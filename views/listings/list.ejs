@@ -1,0 +1,138 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+
+        <div class="center">
+            <h2 id="listTitle">
+                <%= list.title %>:
+            </h2>
+            <div class="list">
+                <div class="listImg">
+                    <img src="<%= list.image.url %>" alt="image of <%= list.title %>">
+                </div>
+
+                <div class="listInfo">
+                    <li><b>Host : </b><i>
+                            @<%= list.owner.username %>
+                        </i></li>
+                    <li><b>Property Type : </b><i>
+                            <%= list.propertyType %>
+                        </i></li>
+                    <li> <b>Description : </b>
+                        <%= list.description %>
+                    </li>
+                    <li> <b>Price :</b>
+                        <%= list.price.toLocaleString("en-rs") %> PKR/night
+                    </li>
+                    <li> <b>Location :</b>
+                        <%= list.location %>
+                    </li>
+                    <li><b>Country :</b>
+                        <%= list.country %>
+                    </li><br>
+                    <%if(currUser){%>
+                        <div><b>Report Abuse : </b> <a href="/listings/<%= list._id %>/report"><button
+                                    class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" fill="currentColor" class="bi bi-patch-exclamation-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    </svg></button></a>
+                        </div><br>
+
+                        <% if(currUser._id.equals(list.owner._id) || currUser.role=='admin' ){ %>
+                            <div class="comboBtns">
+
+                                <div class="divBtns">
+                                    <a href="/listings/<%= list._id %>/edit"><button>Edit</button></a>
+                                    <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
+                                        <button>Delete</button>
+                                    </form>
+
+                                    <% }} %>
+
+                                </div>
+                            </div>
+                            <%if(list.booked==false && currUser && currUser.id !==list.owner.id){%>
+                                <br><a href="/listings/<%= list._id%>/booking" class="divBtns">
+                                    <br> <button class="fullWidth">Book Now!</button>
+                                </a>
+                                <% } %>
+                </div>
+            </div>
+            <hr>
+            <% if(currUser) {%>
+                <div class="review">
+                    <h3>Leave a review : </h3>
+                    <form action="/listings/<%=list.id %>/reviews" method='post' class="needs-validation" novalidate>
+                        <p>Rating : </p>
+                        <div class="col-2 ">
+                            <fieldset class="starability-slot">
+                                <input type="radio" id="first-rate1" name="review[rating]" value="1" checked />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                        </div>
+                        <div class="writeReview"><label class="form-label" for="review"><b>Write a review : </b></label>
+                            <textarea class="form-control" name="review[comment]" rows="5" id="review"
+                                placeholder="Share your experience..." required></textarea>
+                            <div class="valid-feedback">All set!</div>
+                            <div class="invalid-feedback">Please write a short review!</div>
+                        </div>
+                        <div class="divBtns mt-3 mb-3"><button>Submit</button></div>
+                    </form>
+                </div>
+                <% } %>
+                    <hr>
+                    <div class="allReviews">
+                        <h3>&nbsp;&nbsp;All Reviews : </h3>
+                        <div class="reviewsContainer">
+                            <%if(list.reviews.length==0){%>
+                                <i>
+                                    No reviews yet, Be the first to share your experience!
+                                </i>
+                                <%}%>
+                                    <%for(review of list.reviews) {%>
+                                        <div class="card ms-3 mt-3 mb-3">
+                                            <div class="card-body">
+                                                <p class="card-title"><i>
+                                                        <b> User : </b>@<%= review.createdBy.username%>
+                                                    </i></p>
+                                                <p class="starability-result" data-rating="<%= review.rating %>">
+                                                </p>
+                                                <p class="card-text">
+                                                    <b> Review : </b>
+                                                    "<%= review.comment%>"
+                                                </p>
+                                                <p class="card-text">
+                                                    <b>Date :</b>
+                                                    <%= review.createdAt.toString().split(" ").slice(0 , 4).join(" ") %>
+                                        </p>
+                                        <% if (currUser){ %>
+
+                                          <% if(currUser._id.equals(review.createdBy._id) || currUser.role == " admin")
+                                                        { %>
+                                                        <form
+                                                            action=" /listings/<%=list.id %>/reviews/<%= review.id %>?_method=DELETE"
+                                                            method="post">
+                                                            <div class="divBtns  mt-3 ">
+                                                                <button>Delete</button>
+                                                            </div>
+                                                        </form>
+                                                        <% }} %>
+                                            </div>
+                                        </div>
+                                        <%} %>
+
+                        </div>
+                    </div>
+                    <hr>
+        </div>
+    </body>

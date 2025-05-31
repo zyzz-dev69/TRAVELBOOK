@@ -1,0 +1,20 @@
+<% layout('/layouts/boilerplate') %>
+
+    <div class="centerDiv">
+        <h3 class="mt-2 topHeading">Report : </h3>
+
+        <div class="formContainer">
+            <form action="/listings/<%=listing.id%>/report" method="post" class="needs-validation" novalidate>
+                <div>
+                    Report:<i> "<%=listing.title%>"</i>
+                </div><br>
+                <div> <label for="reason" class="form-label"> Reason for Reporting :</label>
+                    <textarea class="form-control" name="reason" rows="8" cols="100"
+                        placeholder="state your reason here..." required></textarea>
+                    <div class="valid-feedback">This is will work!</div>
+                    <div class="invalid-feedback">Please enter a reason.</div>
+                </div><br>
+                <div class="divBtns mt-3"> <button class="fullWidth">Report Now!</button></div>
+            </form>
+        </div>
+    </div>

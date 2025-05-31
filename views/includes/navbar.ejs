@@ -1,0 +1,39 @@
+<div class="nav">
+
+    <div class="hiddenBySearch">
+        <a href="/listings">
+            <img src="/resources/brand.png" alt="x">
+        </a>
+        <a href="/listings" class="navBtns"><i class="fa-solid fa-house"></i></a>
+        <%if(currUser){%>
+            <%if(currUser.role=='admin' ){%>
+                <a href="/admin/dashboard" class="navBtns"> <i class="fas fa-user"></i> </a>
+                <%}}%>
+                    <a href="/listings/new" class="navBtns"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    <!-- This Div is visible on Large Sscreens -->
+    <div class="searchBox hide-small hiddenBySearch">
+        <input autocomplete="off"  type="text" placeholder="Search for your dream Listings..." name="search"
+            class="p-2 rounded search">
+        <ul class="searchResult"></ul>
+    </div>
+    <!-- This Div is visible on Small Screens -->
+    <div class="searchBox hide-large">
+        <input type="hidden" placeholder="write here to search..." name="search" id="searchSmall"
+            class="p-2 fullWidth rounded search">
+        <label for="search" class=""><button class="navBtns p-1"><i id="clickToHideNavItems" class="fas fa-search"></i></button></label>
+        <ul class="searchResult"></ul>
+    </div>
+    <div class="regBtns hiddenBySearch">
+
+        <% if (!currUser) { %>
+            <a href="/signup" class="navBtns"><i class="fa-solid fa-user-plus"></i></a>
+            <a href="/login" class="navBtns"><i class="fa-solid fa-right-to-bracket"></i></a>
+            <% } %>
+
+                <% if (currUser) { %>
+                    <a href="/logout" class="navBtns"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <% } %>
+
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+        <div class="centerDiv">
+            <h3 class="mt-2 topHeading">Edit your Listing : </h3>
+            <div class="formContainer">
+                <form action="/listings/<%= editList._id %>?_method=PUT" method="post" class="needs-validation"
+                    novalidate enctype="multipart/form-data">
+                    <div><label for="title" class="form-label"> Title :</label>
+                        <input class="form-control" type="text" name="title" id="title" value="<%= editList.title %>"
+                            required>
+                        <div class="valid-feedback">Title is Valid!</div>
+                        <div class="invalid-feedback">Please enter a Title.</div>
+                    </div><br>
+                    <div><label for="description" class="form-label"> Description :</label>
+                        <textarea class="form-control" name="description" rows="5" cols="4"
+                            required><%= editList.description %></textarea>
+                        <div class="valid-feedback">This is will work!</div>
+                        <div class="invalid-feedback">Please enter a description.</div>
+                    </div>
+                    <br>
+                    <label for="price" class="form-label"> Price :</label>
+                    <input type="number" name="price" id="price" value="<%= editList.price %>"><br><br>
+                        <div class="preImg">Listing's old Image : <br>
+                            <img src="<%= modedImgUrl %>" alt="image of <%= editList.title %>" >
+                        </div><br>
+                    <label for="img" class="form-label">Upload new Image :</label>
+                    <input type="file" name="image" id="img" accept=".jpg , .png , .jpeg "><br><br>
+                     <div>
+                    <label for="type">Property Type :</label><br>
+                    <select for="type" id="type" name="propertyType">:
+                    <option value="room">Room</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="villa">Villa</option>
+                    <option value="banglow">Banglow</option>
+                    <option value="farmhouse">Farmhouse</option>
+                    <option value="penthouse">penthouse</option></select>
+                </div><br>
+                    <div><label for="location" class="form-label"> Location :</label>
+                        <input class="form-control" type="text" name="location" id="location"
+                            value="<%= editList.location %>" required>
+                        <div class="valid-feedback">This is Valid!</div>
+                        <div class="invalid-feedback">Please enter a City name.</div>
+                    </div><br>
+                    <div><label for="country" class="form-label"> Country :</label>
+                        <input class="form-control" type="text" name="country" id="country"
+                            value="<%= editList.country %>" required>
+                        <div class="valid-feedback">This is Valid!</div>
+                        <div class="invalid-feedback">Please enter a Country name.</div>
+                    </div> <br>
+
+                    <div class="divBtns">
+                        <button class="fullWidth">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </body>

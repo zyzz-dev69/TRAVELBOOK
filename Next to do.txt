@@ -1,0 +1,23 @@
+0. Handle the errors regarding file uploading (invalid type i.e other than jpeg etc) (DONE)
+1. First mod the schema to add a new field as "role i.e admin or user";(DONE)
+2. Create a /admin/signup route to add an admin signup which will add a user with role:admin.(DONE)
+3. Make sure the user signup form add a user with role:user.(DONE)
+4. Make an IsAdmin middelware.(DONE)
+5. Make /admin route which will include No. of all listings(when clicked on it will take admin to /listings), No. of all users, No. of all booked listings(when clicked on lead to further details) and more  (still brainstorming).
+6. Make sure admin can delete all listings and reviews.(DONE).
+14.Now implementing catagories based filtering.(DONE)
+10.Add Booking form to specify how many days and total price as per night.(DONE)
+
+To be Done!
+8. Add Map Functionalities.
+9. Unbook.
+
+11.Full Front End Styling (Choose an intriguing and eye catchy theme) HALF DONE!.
+12.Add more statistics to Admin Dashboard.
+13.Make sure to show Booked and Available listings only to admin not to all users.
+
+
+15.Add Booking model but it will be a pain in the ass when we wanna access user's booked listings. Then we'll have to ue .populate method and faaaaaaakkkkkk........
+16.Resolve the time of bookingExpiration with respect to 12 am.
+17.Payment Gateway Integration.
+18.Eye for password.(DONE)

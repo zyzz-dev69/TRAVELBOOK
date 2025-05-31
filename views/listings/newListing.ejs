@@ -1,0 +1,53 @@
+<% layout('/layouts/boilerplate') %>
+
+    <div class="centerDiv">
+        <h3 class="mt-2 topHeading">Create New Listing : </h3>
+
+        <div class="formContainer">
+            <form action="/listings" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+                <div>
+                    <label for="title" class="form-label"> Title :</label>
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Title" required>
+                    <div class="valid-feedback">Title is Valid!</div>
+                    <div class="invalid-feedback">Please enter a Title.</div>
+                </div><br>
+                <div> <label for="description" class="form-label"> Description :</label>
+                    <textarea class="form-control" name="description" rows="5" cols="4" placeholder="Add some details"
+                        required></textarea>
+                    <div class="valid-feedback">This is will work!</div>
+                    <div class="invalid-feedback">Please enter a description.</div>
+                </div><br>
+                <label for="price" class="form-label"> Price :</label>
+                <input type="number" name="price" id="price" placeholder="Min 100..."><br><br>
+                <div>
+                    <label for="image" class="form-label">Upload image :</label>
+                    <input type="file" name="image" id="img" accept=".jpg , .png , .jpeg" required>
+                    <div class="invalid-feedback">Please upload an image for your listing.</div>
+                </div><br>
+                <div>
+                    <label for="type">Property Type :</label><br>
+                    <select name="propertyType" for="type" id="type">:
+                    <option id="type" value="room">Room</option>
+                    <option id="type" value="apartment">Apartment</option>
+                    <option id="type" value="villa">Villa</option>
+                    <option id="type" value="banglow">Banglow</option>
+                    <option id="type" value="farmhouse">Farmhouse</option>
+                    <option id="type" value="penthouse">Penthouse</option></select>
+                </div><br>
+                <div><label for="location" class="form-label"> Location :</label>
+                    <input class="form-control" type="text" name="location" id="location"
+                        placeholder="Name of city Ex. Islamabad etc." required>
+                    <div class="valid-feedback">This is Valid!</div>
+
+                    <div class="invalid-feedback">Please enter a City name.</div>
+                </div><br>
+                <div><label for="country" class="form-label"> Country :</label>
+                    <input class="form-control" type="text" name="country" id="country" placeholder="Pakistan etc."
+                        required>
+                    <div class="valid-feedback">This is Valid!</div>
+                    <div class="invalid-feedback">Please enter a Country name.</div>
+                </div><br>
+                <div class="divBtns mt-3"> <button class="fullWidth">Add</button></div>
+            </form>
+        </div>
+    </div>

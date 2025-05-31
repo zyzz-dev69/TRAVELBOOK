@@ -1,0 +1,53 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+        <div class="filter divBtns">
+            <a href="/listings/room"><button data-type="rooms">Rooms</button></a>
+            <a href="/listings/apartment"><button data-type="apartment">Apartments</button></a>
+            <a href="/listings/banglow"><button data-type="banglow">Banglows</button></a>
+            <a href="/listings/villa"><button data-type="villa">Villas</button></a>
+            <a href="/listings/farmhouse"><button data-type="farmhouse">Farmhouses</button></a>
+            <a href="/listings/penthouse"><button data-type="penthouse">Penthouses</button></a>
+
+            </button></a>
+        </div>
+
+        <div class="container">
+            <% if(allListings.length == 0){%>
+                <h1>No listings available</h1>
+                <%}%>
+            <% for(list of allListings){ %>
+
+                <a href="/listings/<%= list._id %>">
+                    <div class="listing">
+                        <img src="<%= list.image.url || list.image %>" alt="image of <%= list.title %>" loading="lazy">
+                        <div class="listInfo">
+                            <p>
+                                <b>
+                                    <%= list.title %>
+                                </b>
+                            </p>
+                            <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
+                            <p> <%= list.price.toLocaleString("en-US") %> PKR/night
+                            </p>
+                            <p>
+                                <%= list.location %> ,
+                                    <%= list.country %>
+                                        <% if(!list.booked || list.booked=="false" ){%>
+                                            <p> <b>Available for booking</b></p>
+                                            <% } else{%>
+                                                <p><b>Booked</b></p>
+                                                <% }%>
+                            </p>
+
+
+                        </div>
+                        <!-- <p> <b>Image Link :</b> <a href="<%= list.image.url  %>" target = "_blank">click to see images</a> </p> -->
+                    </div>
+
+                </a>
+
+                <%}%>
+
+        </div>
+    </body>

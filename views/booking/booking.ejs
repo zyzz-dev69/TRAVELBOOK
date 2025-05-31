@@ -1,0 +1,55 @@
+<% layout('/layouts/boilerplate') %>
+
+    <!-- <div class="centerDiv">
+        <h3 class="mt-2 topHeading">Book Now : </h3>
+
+        <div class="newListContainer">
+            <form action="/listings/<%=listing.id%>/booking" method="post" class="needs-validation" novalidate>
+                <div>
+                    Book :<i> "<%=listing.title%>"</i>
+                </div><br>
+                <div class="preImg"><img src="<%=listing.image.url%>" alt="image of current listing"></div><br>
+                <div> <label for="duration" class="form-label"> Duration of stay :</label>
+                   <input type="number" class="form-control" name="duration" id="duration" min="1" max="60" value="1" required>
+                    <div class="valid-feedback">This is will work!</div>
+                    <div class="invalid-feedback">Choose between 1-60 days.</div>
+                </div><br>
+                <div>
+                    <label for="paymentAmount" class="form-label">TotalCost : (in PKR)</label>
+                    <input type="number" class="form-control" name="paymentAmount" id="paymentAmount" value="<%=listing.price%>" required readonly>
+                </div>
+                <div class="divBtns mt-3 offset-3"> <button>Pay Now!</button></div>
+            </form>
+        </div>
+    </div> -->
+    <div class="centerDiv">
+        <div class="formContainer">
+            <form method="post"
+                action="https://sandbox.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchanform">
+                <input type="hidden" name="pp_Version" value="1.1">
+                <input type="hidden" name="pp_TxnType" value="MWALLET">
+                <input type="hidden" name="pp_Language" value="EN">
+                <input type="hidden" name="pp_MerchantID" value="MC140121">
+                <input type="hidden" name="pp_Password" value="5y6w09xe7x">
+                <input type="hidden" name="pp_TxnRefNo" value="UniqueTransactionRefNo">
+                <div> <label for="duration" class="form-label"> Duration of stay :</label>
+                    <input type="number" class="form-control" name="duration" id="duration" min="1" max="60" value="1"
+                        required>
+                    <div class="valid-feedback">This is will work!</div>
+                    <div class="invalid-feedback">Choose between 1-60 days.</div>
+                </div><br>
+
+                <label for="paymentAmount" class="form-label">TotalCost : (in PKR)</label>
+                <input id="paymentAmount" name="pp_Amount" value="  <%=listing.price%>">
+                
+                <input type="hidden" name="pp_TxnCurrency" value="PKR">
+                <input type="hidden" name="pp_TxnDateTime" value="20250520062628">
+                <input type="hidden" name="pp_BillReference" value="billRef">
+                <input type="hidden" name="pp_Description" value="Transaction Description">
+                <input type="hidden" name="pp_TxnExpiryDateTime" value="20250521062628">
+                <input type="hidden" name="pp_ReturnURL" value="localhost:3000/payment-response">
+                <input type="hidden" name="pp_SecureHash" value="GeneratedSecureHash">
+                <div class="divBtns"><button type="submit" class="fullWidth mt-5">Pay Now</button></div>
+            </form>
+        </div>
+    </div>
