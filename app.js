@@ -34,13 +34,13 @@ const sessionStore = mongoStore.create({
     }
 });
 sessionStore.on("error", (err) => {
-    console.log("Session Store Error : ", err); 
+    console.log("Session Store Error : ", err);
     // Handle session store errors here
 });
 sessionStore.on("connected", () => {
-    console.log("Session Store Connected Successfully!");    
-     //Handle successful connection to the session store here
- });
+    console.log("Session Store Connected Successfully!");
+    //Handle successful connection to the session store here
+});
 
 const sessionOptions = {
     store: sessionStore,
@@ -113,15 +113,16 @@ app.get("/listings/banglow", wrapAsync(listingController.banglow));
 app.get("/listings/villa", wrapAsync(listingController.villa));
 app.get("/listings/farmhouse", wrapAsync(listingController.farmhouse));
 app.get("/listings/penthouse", wrapAsync(listingController.penthouse));
+
 app.get("/", async (req, res) => {
-    let allUsers = await User.find();
-    res.send(allUsers);
-    console.log(allUsers);
-})
-app.get("/user", (req, res) => {
     console.log(req.socket.remoteAddress);
-    res.send("Yes")
-})
+    res.send(`Welcome to the Home Page!<br>
+        Your IP Address is : ${req.socket.remoteAddress}`);
+});
+// app.get("/user", (req, res) => {
+//     console.log(req.socket.remoteAddress);
+//     res.send("Yes")
+// })
 
 // New Listing Route **Use JOI for server side schema validation**
 app.get("/listings/new", isLoggedIn, (listingController.newListingForm));
