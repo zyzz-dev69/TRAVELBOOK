@@ -116,8 +116,9 @@ app.get("/listings/penthouse", wrapAsync(listingController.penthouse));
 
 app.get("/", async (req, res) => {
     console.log(req.socket.remoteAddress);
-    res.send(`Welcome to the Home Page!<br>
-        Your IP Address is : ${req.socket.remoteAddress}`);
+    res.send(
+        `<h1>Welcome to the Home Page!</h1><br>
+        <a href="https://travelbook-dmr4.onrender.com/listings">Click here to View all Listings!</a>`);
 });
 // app.get("/user", (req, res) => {
 //     console.log(req.socket.remoteAddress);
