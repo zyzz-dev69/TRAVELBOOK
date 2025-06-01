@@ -117,7 +117,7 @@
                                         </p>
                                         <% if (currUser){ %>
 
-                                          <% if(currUser._id.equals(review.createdBy._id) || currUser.role == " admin")
+                                          <% if(currUser._id.equals(review.createdBy._id) || currUser.role == "admin")
                                                         { %>
                                                         <form
                                                             action=" /listings/<%=list.id %>/reviews/<%= review.id %>?_method=DELETE"
