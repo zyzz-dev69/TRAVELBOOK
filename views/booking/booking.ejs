@@ -40,8 +40,8 @@
                 </div><br>
 
                 <label for="paymentAmount" class="form-label">TotalCost : (in PKR)</label>
-                <input id="paymentAmount" name="pp_Amount" value="  <%=listing.price%>">
-                
+                <input id="paymentAmount" name="pp_Amount" value="  <%=listing.price%>" readonly required>
+
                 <input type="hidden" name="pp_TxnCurrency" value="PKR">
                 <input type="hidden" name="pp_TxnDateTime" value="20250520062628">
                 <input type="hidden" name="pp_BillReference" value="billRef">
