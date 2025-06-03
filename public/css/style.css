@@ -484,6 +484,12 @@ body{
         width: 15rem !important;
     }
 
+    .navopt a {
+        font-size: 1rem;
+        padding-right: 10rem;
+        /* display: inline-block; */
+    }
+
     .alert {
         margin-top: 1rem;
         font-size: 0.51rem;
