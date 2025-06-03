@@ -21,8 +21,11 @@
 
 .nav a {
     text-decoration: none;
-    /* margin: 0.21rem; */
-    margin-left: 0.85rem;
+}
+
+.navBtns i {
+    width: 1.5rem !important;
+    /* height: 3rem !important; */
 }
 
 .nav a img {
@@ -30,7 +33,7 @@
     /* font-size: 30rem; */
     width: 3.5rem;
     height: 3.5rem;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
 
     /* font-size: 3rem; */
 }
@@ -38,7 +41,6 @@
 .navBtns {
     border: 0.12rem solid #000000;
     padding: 0.5rem;
-    font-size: larger;
     text-align: center;
     border-radius: 0.5rem;
     background-color: #ffffff;
@@ -48,21 +50,51 @@
     transition-duration: 0.3s;
 }
 
-.navBtns i {
-    font-size: larger;
-}
 
 .navBtns:hover {
     color: #ffffff !important;
     background-color: #222222;
 }
 
+.hiddenBySearch a {
+    margin-left: 0.3rem !important;
+}
+
+.menu * {
+    color: #ffffff;
+}
+
+.menu .offcanvas {
+    backdrop-filter: blur(10px);
+    background: transparent;
+}
+
+.navopt a {
+    font-size: 1.25rem;
+    padding-right: 10rem;
+    /* display: inline-block; */
+}
+
+.offcanvas-body .navopt {
+    padding: 0.75rem;
+    margin: 1rem -1rem;
+    border-radius: 0.21rem;
+    transition-duration: 0.3s;
+    border-bottom: 1px solid #ffffff;
+}
+
+.offcanvas-body .navopt:hover {
+    cursor: pointer;
+    scale: 1.051;
+
+}
+
+
 .filter {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    flex-shrink: 1;
 }
 
 .topHeading {
@@ -88,8 +120,8 @@
 .listing {
     margin: 0.51rem;
     padding: 0.8rem;
-    width: 22rem;
-    height: 20rem;
+    width: 20rem;
+    height: 18rem;
     /* border: 0.07rem solid black; */
     border-radius: 1.4rem;
     transition-duration: 0.3s;
@@ -115,7 +147,7 @@
 
 .listing img {
     width: 100%;
-    height: 13rem;
+    height: 11rem;
     border-radius: 1.2rem;
 }
 
@@ -164,7 +196,7 @@
     height: 2.5rem;
     width: 8rem;
     transition-duration: 0.2s;
-    border: 0.1rem solid #222222;
+    /* border: 0.2rem solid #222222; */
 }
 
 .divBtns button:hover {
@@ -194,7 +226,6 @@
 .formContainer select {
     background-color: transparent;
     width: 100% !important;
-    padding-left: 0.5rem;
     height: 2.5rem;
     border-bottom: 3px solid #222222;
     border-radius: 0.3rem;
@@ -277,10 +308,14 @@ width: 8rem;
     align-items: center;
     justify-content: space-evenly;
     transition-duration: 0.4s;
-    position: relative;
-    bottom: -17.5rem;
 
+    /* margin-top: auto; */
+    /* ...other existing styles... */
+    /* position: static; */
+    /* or remove position property */
 }
+
+
 
 .ftIcons a {
     margin: 0.25rem;
@@ -384,8 +419,23 @@ body{
     display: none;
 }
 
-#clickToHideNavItems {
-    padding: 0.15rem 0.40rem !important;
+.searchIcon {
+    scale: 0.85;
+
+}
+
+
+
+@media only screen and (max-width:375px) {
+    .nav {
+        width: 100% !important;
+    }
+
+    .listImg img {
+        width: 19rem !important;
+        height: 12rem !important;
+        border-radius: 0.5rem;
+    }
 }
 
 @media only screen and (max-width:615px) {
@@ -395,9 +445,7 @@ body{
 
     .hide-large {
         display: initial;
-        float: right;
-        position: relative;
-        left: 1rem;
+
     }
 
     .formContainer {
@@ -433,3 +481,77 @@ body{
 
 
 }
+
+@media only screen and (max-width: 384px) {
+    .fullWidth {
+        width: 15rem !important;
+    }
+
+    .alert {
+        margin-top: 1rem;
+        font-size: 0.51rem;
+    }
+
+    .nav {
+        width: auto !important;
+    }
+
+    .writeReview {
+        width: 18rem !important;
+    }
+
+    .container {
+        margin-top: 0.5rem;
+        padding: 1rem;
+        justify-content: center;
+        width: 15rem !important;
+        height: 13rem !important;
+
+    }
+
+    .topHeading {
+        width: 20rem;
+    }
+
+    .formContainer {
+        width: 80% !important;
+    }
+
+    #eyeIcon {
+        position: relative;
+        /* transform: translateY(2rem); */
+        top: -2rem;
+        transform: translateX(14rem);
+        cursor: pointer;
+        opacity: 0.7;
+    }
+
+    .footer {
+        border-top: 1px solid grey;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background-color: ghostwhite;
+        /* width:90%;
+        height: 6rem; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        transition-duration: 0.4s;
+
+
+    }
+
+
+}
+
+/* .footer {
+    margin-top: auto;
+    position: static; 
+     
+}
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */

@@ -4,36 +4,85 @@
         <a href="/listings">
             <img src="/resources/brand.png" alt="x">
         </a>
-        <a href="/listings" class="navBtns"><i class="fa-solid fa-house"></i></a>
         <%if(currUser){%>
             <%if(currUser.role=='admin' ){%>
-                <a href="/admin/dashboard" class="navBtns"> <i class="fas fa-user"></i> </a>
+                <a href="/admin/dashboard" class="navBtns"> <i class="fa-solid fa-user-shield"></i></a>
                 <%}}%>
-                    <a href="/listings/new" class="navBtns"><i class="fa-solid fa-plus"></i></a>
+                    <a href="/listings/new" class="navBtns hide-small">Add Listing</a>
+                    <a href="/listings/new" class="navBtns hide-large"><i class="fa-solid fa-plus"></i></a>
     </div>
-    <!-- This Div is visible on Large Sscreens -->
+    <!-- This Div is visible on Large Screens -->
     <div class="searchBox hide-small hiddenBySearch">
-        <input autocomplete="off"  type="text" placeholder="Search for your dream Listings..." name="search"
+        <input autocomplete="off" type="text" placeholder="Search for your dream Listings..." name="search"
             class="p-2 rounded search">
         <ul class="searchResult"></ul>
     </div>
     <!-- This Div is visible on Small Screens -->
     <div class="searchBox hide-large">
         <input type="hidden" placeholder="write here to search..." name="search" id="searchSmall"
-            class="p-2 fullWidth rounded search">
-        <label for="search" class=""><button class="navBtns p-1"><i id="clickToHideNavItems" class="fas fa-search"></i></button></label>
+            class="m-2 p-2 fullWidth rounded search">
+        <label for="search" class="navBtns searchIcon">
+            <i id="clickToHideNavItems" class="fas fa-search"></i>
+        </label>
         <ul class="searchResult"></ul>
     </div>
-    <div class="regBtns hiddenBySearch">
 
-        <% if (!currUser) { %>
-            <a href="/signup" class="navBtns"><i class="fa-solid fa-user-plus"></i></a>
-            <a href="/login" class="navBtns"><i class="fa-solid fa-right-to-bracket"></i></a>
-            <% } %>
+    <div class="menu hiddenBySearch">
+        <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"><i class="fa-solid fa-bars navBtns  "></i></button>
 
-                <% if (currUser) { %>
-                    <a href="/logout" class="navBtns"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header border">
+                <h4 class="offcanvas-title" id="offcanvasRightLabel"><a href="/listings">TRAVEL BOOK</a></h4>
+                <button type="button" class="btn-close border" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="navopt">
+                    <a href="/listings"><i class="fa-solid fa-house"></i>
+                       &nbsp; Explore
+                    </a>
+                </div>
+                <div class="navopt">
+                    <a href="/listings/new"><i class="fa-solid fa-plus"></i>
+                       &nbsp;New Listing
+                    </a>
+                </div>
+                <div class="navopt">
+                    <a href="/#"><i class="fa-solid fa-building-user"></i>
+                      &nbsp;My Listings
+                    </a>
+                </div>
+                <div class="navopt">
+                    <a href="/#"><i class="fa-solid fa-building-circle-check"></i>
+                       &nbsp; My Bookings
+                    </a>
+                </div>
+                <% if (!currUser) { %>
+                    <div class="navopt">
+                        <a href="/signup"><i class="fa-solid fa-user-plus"></i>
+                           &nbsp; Sign Up
+                        </a>
+
+                    </div>
+                    <div class="navopt">
+                        <a href="/login"><i class="fa-solid fa-right-to-bracket"></i>
+                            &nbsp;Login
+                        </a>
+                    </div>
                     <% } %>
+                        <% if (currUser) { %>
+                            <div class="navopt">
+                                <a href="/logout"><i class="fa-solid fa-power-off"></i>
+                                   &nbsp; Log Out
+                                </a>
+                            </div>
+                            <% } %>
 
+            </div>
+
+        </div>
     </div>
+</div>
+
 </div>
