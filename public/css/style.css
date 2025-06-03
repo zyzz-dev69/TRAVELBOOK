@@ -159,10 +159,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    /* border: 0.14rem solid black; */
-    margin-left: 0.8rem;
-    /* padding: 0.8rem; */
-    /* width: 90vh; */
+    margin-left: 0.4rem;
     justify-content: center;
 }
 
@@ -505,8 +502,6 @@ body{
         padding: 1rem;
         justify-content: center;
         width: 15rem !important;
-        height: 13rem !important;
-
     }
 
     .topHeading {
