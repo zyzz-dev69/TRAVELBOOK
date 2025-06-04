@@ -1,18 +1,68 @@
 <% layout('/layouts/boilerplate') %>
 
     <body>
-        <div class="filter divBtns">
-            <a href="/listings/room"><button data-type="rooms">Rooms</button></a>
-            <a href="/listings/apartment"><button data-type="apartment">Apartments</button></a>
-            <a href="/listings/banglow"><button data-type="banglow">Banglows</button></a>
-            <a href="/listings/villa"><button data-type="villa">Villas</button></a>
-            <a href="/listings/farmhouse"><button data-type="farmhouse">Farmhouses</button></a>
-            <a href="/listings/penthouse"><button data-type="penthouse">Penthouses</button></a>
+        <section class="product hiddenBySearch">
+            <h3 class="product-category"><b>Catagorized by property type</b></h3>
+            <button class="pre-btn"><img src="/resources/arrow.png" alt="X"></button>
+            <button class="nxt-btn"><img src="/resources/arrow.png" alt="X"></button>
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="/listings/room"><img src="/resources/room.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Rooms</h2>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                       <a href="/listings/apartment"><img src="/resources/apartment.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Apartments</h2>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                       <a href="/listings/banglow"><img src="/resources/banglow.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Banglows</h2>
 
-            </button></a>
-        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="/listings/villa"><img src="/resources/villa.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Villas</h2>
 
-        <div class="container">
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="/listings/farmhouse" ><img src="/resources/farmhouse.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Farmhouses</h2>
+
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                       <a href="/listings/penthouse"><img src="/resources/penthouse.jpg" class="product-thumb" alt=""></a>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-brand">Penthouses</h2>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="explore"><h3 class="m-4"><b>Book Your Dream Stay</b> : </h3></div> 
+        <div class="containerx">
             <% if(allListings.length == 0){%>
                 <h1>No listings available</h1>
                 <%}%>
@@ -49,5 +99,18 @@
 
                 <%}%>
 
+        </div>
+        <div class="inspirationDiv">
+            <h3><b>Looking For Vacation Inspiration ?</b></h3>
+            <p><i>Get the best inpiration, deals, discounts and personalized recommednations, Straight to your inbox!</i></p>
+            <div class="inpirationForm">
+                <form action="#" method="post">
+                    <input type="text" name="fname" id="name" class="form-control m-2" placeholder="Your name..." required>
+                    <input type="email" name="email" id="email" class="form-control m-2"  placeholder="Your email address..." required>
+                    <div class="divBtns mt-2">
+                        <button type="submit">Get Started</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>

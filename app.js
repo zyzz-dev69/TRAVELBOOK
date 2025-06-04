@@ -107,12 +107,12 @@ app.listen(port, () => console.log(`Server launched at localhost:${port}`));
 
 //Index Route
 app.get("/listings", wrapAsync(listingController.index));
-app.get("/listings/room", wrapAsync(listingController.room));
-app.get("/listings/apartment", wrapAsync(listingController.apartment));
-app.get("/listings/banglow", wrapAsync(listingController.banglow));
-app.get("/listings/villa", wrapAsync(listingController.villa));
-app.get("/listings/farmhouse", wrapAsync(listingController.farmhouse));
-app.get("/listings/penthouse", wrapAsync(listingController.penthouse));
+app.get("/listings/room", wrapAsync(listingController.rooms));
+app.get("/listings/apartment", wrapAsync(listingController.apartments));
+app.get("/listings/banglow", wrapAsync(listingController.banglows));
+app.get("/listings/villa", wrapAsync(listingController.villas));
+app.get("/listings/farmhouse", wrapAsync(listingController.farmhouses));
+app.get("/listings/penthouse", wrapAsync(listingController.penthouses));
 
 app.get("/", async (req, res) => {
     console.log(req.socket.remoteAddress);

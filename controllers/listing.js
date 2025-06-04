@@ -3,32 +3,32 @@ const cloudinary = require("cloudinary").v2;
 
 
 module.exports.index = async (req, res) => {
-    let allListings = await Listing.find({booked:false});
+    let allListings = await Listing.find({ booked: false }).limit(12);
     res.render("listings/index.ejs", { allListings });
 };
-module.exports.room = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"room"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.rooms = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "room", booked: false });
+    res.render("listings/filteredListings/rooms.ejs", { allListings });
 };
-module.exports.apartment = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"apartment"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.apartments = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "apartment", booked: false });
+    res.render("listings/filteredListings/apartments.ejs", { allListings });
 };
-module.exports.banglow = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"banglow"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.banglows = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "banglow", booked: false });
+    res.render("listings/filteredListings/banglows.ejs", { allListings });
 };
-module.exports.villa = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"villa"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.villas = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "villa", booked: false });
+    res.render("listings/filteredListings/villas.ejs", { allListings });
 };
-module.exports.farmhouse = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"farmhouse"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.farmhouses = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "farmhouse", booked: false });
+    res.render("listings/filteredListings/farmhouses.ejs", { allListings });
 };
-module.exports.penthouse = async (req, res) => {
-    let allListings = await Listing.find({propertyType:"penthouse"});
-    res.render("listings/index.ejs", { allListings });
+module.exports.penthouses = async (req, res) => {
+    let allListings = await Listing.find({ propertyType: "penthouse", booked: false });
+    res.render("listings/filteredListings/penthouses.ejs", { allListings });
 };
 
 module.exports.newListingForm = (req, res) => {
@@ -36,14 +36,14 @@ module.exports.newListingForm = (req, res) => {
 };
 
 module.exports.createListing = async (req, res) => {
-    let { title, description, price, location, country, propertyType} = req.body;
+    let { title, description, price, location, country, propertyType } = req.body;
     let newListing = new Listing({
         title: title,
         description: description,
         price: price,
         location: location,
         country: country,
-        propertyType:propertyType,
+        propertyType: propertyType,
     });
     newListing.owner = req.user._id;
     newListing.image.url = req.file.path;
@@ -86,7 +86,7 @@ module.exports.destroyListing = async (req, res) => {
     console.log(`Deleted Listing : ${deletedListing}`);
     let public_id = deletedListing.image.filename;
     // console.log(public_id);
-    cloudinary.uploader.destroy(public_id).then((res)=> console.log(res)).catch((err)=>console.log(err));
+    cloudinary.uploader.destroy(public_id).then((res) => console.log(res)).catch((err) => console.log(err));
     req.flash("success", "Listing Deleted Successfully!")
     res.redirect("/listings");
 };

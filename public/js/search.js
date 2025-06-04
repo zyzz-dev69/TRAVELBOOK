@@ -1,6 +1,8 @@
 let searchInput = document.querySelectorAll('.search');
 let searchResult = document.querySelectorAll('.searchResult');
+searchResult.forEach((res) => res.style.visibility = 'hidden');
 searchInput.forEach((input) => input.addEventListener("input", async () => {
+    searchResult.forEach((res) => res.style.visibility = 'visible');
     const query = input.value.trim();
     if (query.length === 0) return searchResult.forEach((res) => res.innerHTML = "");
 

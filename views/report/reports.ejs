@@ -8,7 +8,7 @@
               <% } %>
         </div>
         <%for(report of allReports){%>
-            <div class="card col-6 offset-3 mt-3 p-2">
+            <div class="reportCard card col-8 offset-2 mt-3 p-2">
                 <p><b>Listing Id :</b> <i>"<%=report.listingId%>"</i></p>
                 <p><b>Reported By :</b> <i>"<%=report.userId%>"</i></p>
                 <p>
@@ -18,7 +18,7 @@
                 <p> <b>Reported At :</b>
                     <%=report.reportedAt.toString().split(" ").slice(0,4).join(" ")%>
                 </p>
-                <form action=" /admin/report/<%=report._id%>" method="post" class="divBtns ">
+                <form action="/admin/report/<%=report._id%>" method="post" class="divBtns ">
                         <button >Resolve!</button></form>
             </div>
             <% }%>
