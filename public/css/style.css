@@ -147,7 +147,7 @@ body::-webkit-scrollbar{
 .containerx {
     background: #855D5D;
     background: linear-gradient(90deg, rgba(133, 93, 93, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(133, 93, 93, 1) 100%);
-    margin: 0rem 0.6rem 1rem 0.6rem;
+    margin: 2rem 0.6rem 2rem 0.6rem;
     padding: 1rem 0.4rem;
     border-radius: 1rem;
     border-top: none !important;
