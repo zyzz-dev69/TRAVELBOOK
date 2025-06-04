@@ -16,7 +16,8 @@
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                       <a href="/listings/apartment"><img src="/resources/apartment.jpg" class="product-thumb" alt=""></a>
+                        <a href="/listings/apartment"><img src="/resources/apartment.jpg" class="product-thumb"
+                                alt=""></a>
                     </div>
                     <div class="product-info">
                         <h2 class="product-brand">Apartments</h2>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                       <a href="/listings/banglow"><img src="/resources/banglow.jpg" class="product-thumb" alt=""></a>
+                        <a href="/listings/banglow"><img src="/resources/banglow.jpg" class="product-thumb" alt=""></a>
                     </div>
                     <div class="product-info">
                         <h2 class="product-brand">Banglows</h2>
@@ -42,7 +43,8 @@
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <a href="/listings/farmhouse" ><img src="/resources/farmhouse.jpg" class="product-thumb" alt=""></a>
+                        <a href="/listings/farmhouse"><img src="/resources/farmhouse.jpg" class="product-thumb"
+                                alt=""></a>
                     </div>
                     <div class="product-info">
                         <h2 class="product-brand">Farmhouses</h2>
@@ -51,7 +53,8 @@
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                       <a href="/listings/penthouse"><img src="/resources/penthouse.jpg" class="product-thumb" alt=""></a>
+                        <a href="/listings/penthouse"><img src="/resources/penthouse.jpg" class="product-thumb"
+                                alt=""></a>
                     </div>
                     <div class="product-info">
                         <h2 class="product-brand">Penthouses</h2>
@@ -60,53 +63,60 @@
                 </div>
             </div>
         </section>
-        
-        <div class="explore"><h3 class="m-4"><b>Book Your Dream Stay</b> : </h3></div> 
+
+        <div class="explore">
+            <h3 class="m-4"><b>Book Your Dream Stay</b> </h3>
+        </div>
         <div class="containerx">
-            <% if(allListings.length == 0){%>
+            <% if(allListings.length==0){%>
                 <h1>No listings available</h1>
                 <%}%>
-            <% for(list of allListings){ %>
+                    <% for(list of allListings){ %>
 
-                <a href="/listings/<%= list._id %>">
-                    <div class="listing">
-                        <img src="<%= list.image.url || list.image %>" alt="image of <%= list.title %>" loading="lazy">
-                        <div class="listInfo">
-                            <p>
-                                <b>
-                                    <%= list.title %>
-                                </b>
-                            </p>
-                            <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
-                            <p> <%= list.price.toLocaleString("en-US") %> PKR/night
-                            </p>
-                            <p>
-                                <%= list.location %> ,
-                                    <%= list.country %>
-                                        <% if(!list.booked || list.booked=="false" ){%>
-                                            <p> <b>Available for booking</b></p>
-                                            <% } else{%>
-                                                <p><b>Booked</b></p>
-                                                <% }%>
-                            </p>
+                        <a href="/listings/<%= list._id %>">
+                            <div class="listing">
+                                <img src="<%= list.image.url || list.image %>" alt="image of <%= list.title %>"
+                                    loading="lazy">
+                                <div class="listInfo">
+                                    <p>
+                                        <b>
+                                            <%= list.title %>
+                                        </b>
+                                    </p>
+                                    <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
+                                    <p>
+                                        <%= list.price.toLocaleString("en-US") %> PKR/night
+                                    </p>
+                                    <p>
+                                        <%= list.location %> ,
+                                            <%= list.country %>
+                                                <% if(!list.booked || list.booked=="false" ){%>
+                                                    <p> <b>Available for booking</b></p>
+                                                    <% } else{%>
+                                                        <p><b>Booked</b></p>
+                                                        <% }%>
+                                    </p>
 
 
-                        </div>
-                        <!-- <p> <b>Image Link :</b> <a href="<%= list.image.url  %>" target = "_blank">click to see images</a> </p> -->
-                    </div>
+                                </div>
+                                <!-- <p> <b>Image Link :</b> <a href="<%= list.image.url  %>" target = "_blank">click to see images</a> </p> -->
+                            </div>
 
-                </a>
+                        </a>
 
-                <%}%>
+                        <%}%>
 
         </div>
         <div class="inspirationDiv">
             <h3><b>Looking For Vacation Inspiration ?</b></h3>
-            <p><i>Get the best inpiration, deals, discounts and personalized recommednations, Straight to your inbox!</i></p>
+            <p><i>Get the best inpiration, deals, discounts and personalized recommednations, Straight to your
+                    inbox!</i></p>
             <div class="inpirationForm">
                 <form action="#" method="post">
-                    <input type="text" name="fname" id="name" class="form-control m-2" placeholder="Your name..." required>
-                    <input type="email" name="email" id="email" class="form-control m-2"  placeholder="Your email address..." required>
+                    <input type="text" name="fname" id="name" class="form-control m-2" placeholder="Your name..."
+                        required>
+                    <input type="email" name="email" id="email" class="form-control m-2"
+                        placeholder="Your email address..." required>
                     <div class="divBtns mt-2">
                         <button type="submit">Get Started</button>
                     </div>

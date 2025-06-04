@@ -125,7 +125,7 @@
 .explore {
     display: block !important;
     padding: 1rem;
-    margin: 1rem 0.6rem -2rem 0.6rem;
+    margin: 1rem 0.6rem;
     border-radius: 1rem;
     /* box-shadow: 0px 0px 8px #000000; */
     background: #855D5D;
@@ -537,7 +537,9 @@ body{
         margin-top: 1rem;
         font-size: 0.61rem;
     }
-
+    .explore{
+        font-size: 1rem !important ;
+    }
     .listImg img {
         width: 24rem;
         height: 15rem;
