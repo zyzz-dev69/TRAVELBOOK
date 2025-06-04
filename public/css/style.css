@@ -76,9 +76,7 @@
 body::-webkit-scrollbar{
     display: none;
 }
-.menu * {
-    
-}
+
 .offcanvas-body::-webkit-scrollbar{
     display: none;
 }

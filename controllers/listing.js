@@ -3,7 +3,7 @@ const cloudinary = require("cloudinary").v2;
 
 
 module.exports.index = async (req, res) => {
-    let allListings = await Listing.find({ booked: false }).limit(12);
+    let allListings = await Listing.find({ booked: false });
     res.render("listings/index.ejs", { allListings });
 };
 module.exports.rooms = async (req, res) => {
