@@ -339,6 +339,10 @@ width: 8rem;
     flex-wrap: wrap;
 }
 
+.writeReview {
+
+    width: 30rem !important;
+}
 
 /*New Listing */
 
