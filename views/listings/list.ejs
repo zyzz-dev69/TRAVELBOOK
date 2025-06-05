@@ -48,7 +48,8 @@
 
                                     <div class="divBtns">
                                         <a href="/listings/<%= list._id %>/edit"><button>Edit</button></a>
-                                        <form action="/listings/<%= list._id %>?_method=DELETE" method="post" class="divBtnsRed">
+                                        <form action="/listings/<%= list._id %>?_method=DELETE" method="post"
+                                            class="divBtnsRed">
                                             <button>Delete</button>
                                         </form>
 
@@ -68,8 +69,9 @@
             <% if(currUser) {%>
                 <div class="reviewSection">
                     <div class="review">
-                        <h3 style="color: #FB5A57;"><b>Leave a review :</b>  </h3>
-                        <form action="/listings/<%=list.id %>/reviews" method='post' class="needs-validation reviewForm" novalidate>
+                        <h3 style="color: #FB5A57;"><b>Leave a review :</b> </h3>
+                        <form action="/listings/<%=list.id %>/reviews" method='post' class="needs-validation reviewForm"
+                            novalidate>
                             <p><b>Rating :</b> </p>
                             <div class="col-2 ">
                                 <fieldset class="starability-slot">
@@ -87,7 +89,7 @@
                             </div>
                             <div class="writeReview"><label class="form-label" for="review"><b>Write a review :
                                     </b></label>
-                                <textarea class="form-control" name="review[comment]" rows="5"  id="review"
+                                <textarea class="form-control" name="review[comment]" rows="5" id="review"
                                     placeholder="Share your experience..." required></textarea>
                                 <div class="valid-feedback">All set!</div>
                                 <div class="invalid-feedback">Please write a short review!</div>
@@ -108,17 +110,18 @@
                                         <%for(review of list.reviews) {%>
                                             <div class="card reviewDiv">
                                                 <div class="card-body">
-                                                    <p class="card-title"><i>
-                                                            <b> User : </b>@<%= review.createdBy.username%>
-                                                        </i></p>
-                                                    <p class="starability-result" data-rating="<%= review.rating %>">
+                                                    <p class="card-title">
+                                                        <b>
+                                                            <%= review.createdBy.username.toUpperCase()%>
+                                                        </b>
+                                                    </p>
+                                                    <p class="starability-result star"
+                                                        data-rating="<%= review.rating %>">
                                                     </p>
                                                     <p class="card-text">
-                                                        <b> Review : </b>
-                                                        "<%= review.comment%>"
+                                                        <%= review.comment%>
                                                     </p>
-                                                    <p class="card-text">
-                                                        <b>Date :</b>
+                                                    <p class="card-text reviewDate">
                                                         <%= review.createdAt.toString().split(" ").slice(0 , 4).join(" ") %>
                                         </p>
                                         <% if (currUser){ %>
@@ -129,7 +132,7 @@
                                                                 action=" /listings/<%=list.id %>/reviews/<%= review.id %>?_method=DELETE"
                                                                 method="post">
                                                                 <div class="divBtnsRed  mt-3 ">
-                                                                    <button >Delete</button>
+                                                                    <button>Delete</button>
                                                                 </div>
                                                             </form>
                                                             <% }} %>

@@ -424,7 +424,7 @@ width: 8rem;
 .reviewDiv {
     background-color: #1e1e1e !important;
     margin: 1rem;
-    border-radius: 1rem !important;
+    border-radius: 0.5rem !important;
     color: #f1f1f1 !important;
     box-shadow: 0px 0px 8px rgb(255, 255, 255);
 }
@@ -436,6 +436,11 @@ width: 8rem;
 
 .writeReview {
     width: 30rem !important;
+}
+.reviewDate{
+    position: relative;
+    left: 2.3rem;
+    top: 1.4rem;
 }
 
 /*New Listing */
