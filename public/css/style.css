@@ -33,8 +33,9 @@ body {
 
 
 .nav a img {
+    opacity: 0.9;
     background-color: #f1f1f1;
-    color: #FB5A57;
+    /* color: #FB5A57; */
     /* font-size: 30rem; */
     width: 3.5rem;
     height: 3.5rem;
@@ -42,12 +43,14 @@ body {
 
     /* font-size: 3rem; */
 }
-
+.nav a img:hover{
+    opacity: 1;
+}
 .searchBox input {
     background-color: #444141;
     color: #f1f1f1;
     border-radius: 0.5rem !important;
-    border: #FB5A57 2px solid !important;
+    border: #f1f1f1 2px solid !important;
 }
 
 .navBtns {
@@ -55,12 +58,13 @@ body {
     padding: 0.5rem;
     text-align: center;
     border-radius: 0.5rem;
-    background-color: #FB5A57;
+    /* background-color: #FB5A57; */
     /* width: 3rem; 
     height: 8rem; */
     color: #f1f1f1 !important;
     transition-duration: 0.3s;
     font-weight: 550 !important;
+    opacity: 0.8;
 }
 
 .navBtns i {
@@ -71,12 +75,16 @@ body {
 
 
 .navBtns:hover {
-    color: #FB5A57 !important;
-    background-color: #f1f1f1;
+    opacity: 1;
+    scale: 1.05;
+    /* color: #FB5A57 !important;
+    background-color: #f1f1f1; */
 }
 
 .navBtns:hover i {
-    color: #FB5A57 !important;
+    scale: 1.25;
+    opacity: 1;
+    /* color: #FB5A57 !important; */
 }
 
 .hiddenBySearch a {
@@ -108,7 +116,7 @@ body::-webkit-scrollbar {
 }
 
 .navopt i {
-    color: #00bfff;
+    color: #f1f1f1;
     scale: 1.25;
 }
 
@@ -268,7 +276,7 @@ body::-webkit-scrollbar {
     border: none;
     font-weight: 550;
     border-radius: 0.5rem;
-    margin: 0.5rem 0.5rem 0 0;
+    margin: 0.5rem 0.5rem;
     height: 2.5rem;
     width: 8rem;
     transition-duration: 0.2s;
@@ -282,7 +290,6 @@ body::-webkit-scrollbar {
 .fullWidth {
     height: 3rem !important;
     width: 20rem !important;
-    /* margin-top: 2rem !important; */
 }
 
 /* Edit Page Styling */
@@ -385,7 +392,7 @@ width: 8rem;
     background-color: #1e1e1e !important;
     border-radius: 1rem !important;
     color: #f1f1f1 !important;
-    box-shadow: 0px 0px 8px #000000;
+    box-shadow: 0px 0px 8px rgb(255, 255, 255);
 }
 
 .reviewsContainer {
@@ -433,7 +440,7 @@ width: 8rem;
 
 .ftIcons a i:hover {
     transform: scale(1.2);
-    color: #fdfdfd !important;
+    /* color: #fdfdfd !important; */
     opacity: 1;
 }
 
@@ -467,7 +474,7 @@ width: 8rem;
 }
 
 .dashboardCards {
-    background-color: #272626;
+    background-color: #1e1e1e;
     margin: 1rem;
     padding: 2rem;
     border-radius: 2rem;
@@ -483,11 +490,11 @@ width: 8rem;
     background: #2c2c2c;
     border-radius: 1rem;
     border: none;
-    margin: 0.5rem;
+    margin:1rem 0.5rem;
     padding: 0.5rem 0rem !important;
     width: 15rem;
     height: 10.5rem;
-    box-shadow: #000000 0px 0px 8px;
+    box-shadow: 0px 0px 8px rgb(255, 255, 255);
     opacity: 0.8;
     transition-duration: 0.3s;
     text-align: center;
@@ -699,11 +706,12 @@ body{
 
 /* REPORT STYLING */
 .reportCard {
-    background-color: #000000 !important;
+    background-color: #1e1e1e !important;
+    color: #f1f1f1 !important;
     margin: 1rem;
     border-radius: 1rem !important;
     border: 1px solid grey;
-    box-shadow: #000000 0px 0px 8px;
+    box-shadow: 0px 0px 8px rgb(255, 255, 255);
 }
 
 /* PRODUCT aka Listings */
