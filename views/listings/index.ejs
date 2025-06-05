@@ -1,6 +1,13 @@
 <% layout('/layouts/boilerplate') %>
 
     <body>
+        <section class="heroSection">
+            <div class="heroText">
+                <h2><b>Find Your Perfect Stay</b></h2>
+                <p><i>Explore a wide range of properties for your next vacation or business trip.</i> </p>
+                <a href="#explore" class="divBtns"><button >EXPLORE</button></a>
+            </div>
+        </section>
         <section class="product hiddenBySearch">
             <h3 class="product-category"><b>Catagorized by property type</b></h3>
             <button class="pre-btn"><img src="/resources/arrow.png" alt="X"></button>
@@ -63,11 +70,11 @@
                 </div>
             </div>
         </section>
-
-        <div class="explore">
+        
+        <div class="explore" id="explore">
             <h3 class="m-2"><b>Book Your Dream Stay</b> </h3>
         </div>
-        <div class="containerx">
+        <div class="containerx" >
             <% if(allListings.length==0){%>
                 <h1>No listings available</h1>
                 <%}%>
@@ -86,15 +93,15 @@
                                     <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
                                     <p>
                                         <%= list.location %> ,
-                                        <%= list.country %>
-                                        <% if(!list.booked || list.booked=="false" ){%>
-                                            <% } else{%>
-                                                <p><b>Booked</b></p>
-                                                <% }%>
-                                            </p>
-                                            <p style="color: #FB5A57">
-                                                <%= list.price.toLocaleString("en-US") %> PKR/night
-                                            </p>
+                                            <%= list.country %>
+                                                <% if(!list.booked || list.booked=="false" ){%>
+                                                    <% } else{%>
+                                                        <p><b>Booked</b></p>
+                                                        <% }%>
+                                    </p>
+                                    <p style="color: #FB5A57">
+                                        <%= list.price.toLocaleString("en-US") %> PKR/night
+                                    </p>
 
 
                                 </div>
@@ -108,7 +115,7 @@
         </div>
         <div class="inspirationDiv">
             <h3><b>Looking For Vacation Inspiration ?</b></h3>
-            <p><i>Get the best inpiration, deals, discounts and personalized recommednations, Straight to your
+            <p><i>Get the best inspiration, deals, discounts and personalized recommednations, Straight to your
                     inbox!</i></p>
             <div class="inpirationForm">
                 <form action="#" method="post">

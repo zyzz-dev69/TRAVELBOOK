@@ -9,6 +9,33 @@ body {
     color: #f1f1f1 !important;
 }
 
+.heroSection{
+    /* height: 80vh; */
+    width: 100%;
+    background: url("../resources/hero.jpg") no-repeat center;
+    background-position: cover;
+    /* margin: 2rem 0rem; */
+}
+.heroSection::before{
+    background: rgb(0, 0,0,0.5);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.heroText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    z-index: 1;
+    position: relative;
+    color: #FB5A57;
+}
+
 .nav {
     background-color: #1e1e1e !important;
     width: 100%;
@@ -638,6 +665,12 @@ body{
     .searchResult {
         margin-left: 2rem;
     }
+    .heroText h2{
+        font-size: 2rem;
+    }
+    .heroText p{
+        font-size: 0.75rem;
+    }
 }
 
 @media only screen and (min-width: 650px) {
@@ -648,7 +681,7 @@ body{
 
 }
 
-@media only screen and (max-width: 384px) {
+@media only screen and (max-width: 388px) {
     .fullWidth {
         width: 15rem !important;
     }
@@ -685,6 +718,12 @@ body{
     .nxt-btn img {
         width: 2rem !important;
         height: 2rem !important;
+    }
+    .heroText h2{
+        font-size: 1.25rem;
+    }
+    .heroText p{
+        font-size: 0.6rem;
     }
 
 }
@@ -846,6 +885,13 @@ body{
 
 .inspirationDiv input {
     background-color: #2c2c2c;
+    color: #f1f1f1;
+    border-radius: 0.5rem !important;
+    border: #f1f1f1 2px solid !important;
+    text-align: center !important;
+    height: 2.5rem;
+    padding: 0.5rem;
+
 }
 
 @keyframes onScroll {
