@@ -48,7 +48,7 @@
 
                                     <div class="divBtns">
                                         <a href="/listings/<%= list._id %>/edit"><button>Edit</button></a>
-                                        <form action="/listings/<%= list._id %>?_method=DELETE" method="post">
+                                        <form action="/listings/<%= list._id %>?_method=DELETE" method="post" class="divBtnsRed">
                                             <button>Delete</button>
                                         </form>
 
@@ -68,7 +68,7 @@
             <% if(currUser) {%>
                 <div class="reviewSection">
                     <div class="review">
-                        <h3><b>Leave a review :</b>  </h3>
+                        <h3 style="color: #FB5A57;"><b>Leave a review :</b>  </h3>
                         <form action="/listings/<%=list.id %>/reviews" method='post' class="needs-validation reviewForm" novalidate>
                             <p><b>Rating :</b> </p>
                             <div class="col-2 ">
@@ -98,7 +98,7 @@
                     <% } %>
                         <hr>
                         <div class="allReviews">
-                            <h3>&nbsp;&nbsp;<b>All Reviews :</b> </h3>
+                            <h3 style="color: #FB5A57;">&nbsp;&nbsp;<b>All Reviews :</b> </h3>
                             <div class="reviewsContainer">
                                 <%if(list.reviews.length==0){%>
                                     <i>
@@ -106,7 +106,7 @@
                                     </i>
                                     <%}%>
                                         <%for(review of list.reviews) {%>
-                                            <div class="card m-2">
+                                            <div class="card m-2 reviewDiv">
                                                 <div class="card-body">
                                                     <p class="card-title"><i>
                                                             <b> User : </b>@<%= review.createdBy.username%>
@@ -128,8 +128,8 @@
                                                             <form
                                                                 action=" /listings/<%=list.id %>/reviews/<%= review.id %>?_method=DELETE"
                                                                 method="post">
-                                                                <div class="divBtns  mt-3 ">
-                                                                    <button>Delete</button>
+                                                                <div class="divBtnsRed  mt-3 ">
+                                                                    <button >Delete</button>
                                                                 </div>
                                                             </form>
                                                             <% }} %>

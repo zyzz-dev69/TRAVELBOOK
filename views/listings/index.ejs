@@ -65,7 +65,7 @@
         </section>
 
         <div class="explore">
-            <h3 class="m-4"><b>Book Your Dream Stay</b> </h3>
+            <h3 class="m-2"><b>Book Your Dream Stay</b> </h3>
         </div>
         <div class="containerx">
             <% if(allListings.length==0){%>
@@ -85,17 +85,16 @@
                                     </p>
                                     <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
                                     <p>
-                                        <%= list.price.toLocaleString("en-US") %> PKR/night
-                                    </p>
-                                    <p>
                                         <%= list.location %> ,
-                                            <%= list.country %>
-                                                <% if(!list.booked || list.booked=="false" ){%>
-                                                    <p> <b>Available for booking</b></p>
-                                                    <% } else{%>
-                                                        <p><b>Booked</b></p>
-                                                        <% }%>
-                                    </p>
+                                        <%= list.country %>
+                                        <% if(!list.booked || list.booked=="false" ){%>
+                                            <% } else{%>
+                                                <p><b>Booked</b></p>
+                                                <% }%>
+                                            </p>
+                                            <p style="color: #FB5A57">
+                                                <%= list.price.toLocaleString("en-US") %> PKR/night
+                                            </p>
 
 
                                 </div>
@@ -113,9 +112,9 @@
                     inbox!</i></p>
             <div class="inpirationForm">
                 <form action="#" method="post">
-                    <input type="text" name="fname" id="name" class="form-control m-2" placeholder="Your name..."
+                    <input type="text" name="fname" id="name" class="form-control mt-2" placeholder="Your name..."
                         required>
-                    <input type="email" name="email" id="email" class="form-control m-2"
+                    <input type="email" name="email" id="email" class="form-control mt-2"
                         placeholder="Your email address..." required>
                     <div class="divBtns mt-2">
                         <button type="submit">Get Started</button>

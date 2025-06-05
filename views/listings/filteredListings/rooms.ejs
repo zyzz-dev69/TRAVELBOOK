@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 
     <body>
-        <h3 class="m-4"><a href="/listings"><i class="fa-solid fa-circle-arrow-left fa-lg mr-2" style="color: #000000;"></i></a><b>ROOMS</b> : </h3>
+        <h3 class="m-4"><a href="/listings"><i class="fa-solid fa-circle-arrow-left fa-lg mr-2" style="color: #009acd;"></i></a><b>ROOMS</b> : </h3>
 
         <div class="containerx">
             <% if(allListings.length==0){%>
@@ -21,17 +21,16 @@
                                     </p>
                                     <!-- <p> <b>Description :</b> <%=  list.description  %></p> -->
                                     <p>
-                                        <%= list.price.toLocaleString("en-US") %> PKR/night
-                                    </p>
-                                    <p>
                                         <%= list.location %> ,
-                                            <%= list.country %>
-                                                <% if(!list.booked || list.booked=="false" ){%>
-                                                    <p> <b>Available for booking</b></p>
-                                                    <% } else{%>
-                                                        <p><b>Booked</b></p>
-                                                        <% }%>
-                                    </p>
+                                        <%= list.country %>
+                                        <% if(!list.booked || list.booked=="false" ){%>
+                                            <% } else{%>
+                                                <p><b>Booked</b></p>
+                                                <% }%>
+                                            </p>
+                                            <p style="color: #FB5A57">
+                                                <%= list.price.toLocaleString("en-US") %> PKR/night
+                                            </p>
 
 
                                 </div>
