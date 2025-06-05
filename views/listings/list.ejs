@@ -109,7 +109,10 @@
                                     <%}%>
                                         <%for(review of list.reviews) {%>
                                             <div class="card reviewDiv">
-                                                <div class="card-body">
+                                                <p class="card-text reviewDate">
+                                                   <%= review.createdAt.toString().split(" ").slice(0 , 4).join(" ") %>
+                                               </p>
+                                                <div class="card-body mt-3">
                                                     <p class="card-title">
                                                         <b>
                                                             <%= review.createdBy.username.toUpperCase()%>
@@ -121,9 +124,7 @@
                                                     <p class="card-text">
                                                         <%= review.comment%>
                                                     </p>
-                                                    <p class="card-text reviewDate">
-                                                        <%= review.createdAt.toString().split(" ").slice(0 , 4).join(" ") %>
-                                        </p>
+                                                   
                                         <% if (currUser){ %>
 
                                           <% if(currUser._id.equals(review.createdBy._id) || currUser.role == "admin"){ %>

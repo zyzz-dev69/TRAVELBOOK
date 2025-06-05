@@ -438,9 +438,12 @@ width: 8rem;
     width: 30rem !important;
 }
 .reviewDate{
-    position: relative;
+    opacity: 0.5;
+    position:absolute;
+    right: 0;
+    /* position: relative;
     left: 2.3rem;
-    top: 1.4rem;
+    top: -1.4rem; */
 }
 
 /*New Listing */
