@@ -9,15 +9,16 @@ body {
     color: #f1f1f1 !important;
 }
 
-.heroSection{
-    /* height: 80vh; */
+.heroSection {
+    height: 80vh;
     width: 100%;
     background: url("../resources/hero.jpg") no-repeat center;
     background-position: cover;
     /* margin: 2rem 0rem; */
 }
-.heroSection::before{
-    background: rgb(0, 0,0,0.5);
+
+.heroSection::before {
+    background: rgb(0, 0, 0, 0.5);
     content: "";
     position: absolute;
     top: 0;
@@ -25,7 +26,8 @@ body {
     right: 0;
     bottom: 0;
 }
-.heroText{
+
+.heroText {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,6 +43,8 @@ body {
     width: 100%;
     height: 4.5rem;
     border-bottom: 1px solid gray;
+    box-shadow: 0px 0px 8px rgb(255, 255, 255);
+
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     display: flex;
@@ -70,9 +74,11 @@ body {
 
     /* font-size: 3rem; */
 }
-.nav a img:hover{
+
+.nav a img:hover {
     opacity: 1;
 }
+
 .searchBox input {
     background-color: #444141;
     color: #f1f1f1;
@@ -412,11 +418,12 @@ width: 8rem;
 /* Review Styling */
 .review,
 .allReviews {
-    margin-left: 0.5rem;
+    margin: 0.5rem;
 }
 
 .reviewDiv {
     background-color: #1e1e1e !important;
+    margin: 1rem;
     border-radius: 1rem !important;
     color: #f1f1f1 !important;
     box-shadow: 0px 0px 8px rgb(255, 255, 255);
@@ -428,7 +435,6 @@ width: 8rem;
 }
 
 .writeReview {
-
     width: 30rem !important;
 }
 
@@ -440,6 +446,7 @@ width: 8rem;
     background-color: #1e1e1e !important;
     color: #f1f1f1 !important;
     border-top: 1px solid grey;
+    box-shadow: 0px 0px 8px rgb(255, 255, 255);
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     width: 100%;
@@ -517,7 +524,7 @@ width: 8rem;
     background: #2c2c2c;
     border-radius: 1rem;
     border: none;
-    margin:1rem 0.5rem;
+    margin: 1rem 0.5rem;
     padding: 0.5rem 0rem !important;
     width: 15rem;
     height: 10.5rem;
@@ -665,10 +672,12 @@ body{
     .searchResult {
         margin-left: 2rem;
     }
-    .heroText h2{
+
+    .heroText h2 {
         font-size: 2rem;
     }
-    .heroText p{
+
+    .heroText p {
         font-size: 0.75rem;
     }
 }
@@ -719,18 +728,23 @@ body{
         width: 2rem !important;
         height: 2rem !important;
     }
-    .heroText h2{
+
+    .heroText h2 {
         font-size: 1.25rem;
     }
-    .heroText p{
+
+    .heroText p {
         font-size: 0.6rem;
     }
 
 }
+
 @media (min-width: 800px) and (max-width: 1024px) {
-.listing{
-    margin: 2.5rem;
-}}
+    .listing {
+        margin: 2.5rem;
+    }
+}
+
 /* .footer {
     margin-top: auto;
     /* ...other existing styles... *
@@ -747,7 +761,7 @@ body{
 .reportCard {
     background-color: #1e1e1e !important;
     color: #f1f1f1 !important;
-    margin: 1rem;
+    margin: 2rem;
     border-radius: 1rem !important;
     border: 1px solid grey;
     box-shadow: 0px 0px 8px rgb(255, 255, 255);
@@ -836,7 +850,7 @@ body{
     align-items: center;
     cursor: pointer;
     z-index: 8;
-    border-radius: 10px !important; 
+    border-radius: 10px !important;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #4d4a4a 100%);
 }
 
@@ -914,4 +928,3 @@ body{
     animation-timeline: view();
     animation-range: entry 0% cover 30%;
 }
-
