@@ -10,7 +10,7 @@ body {
 }
 
 .heroSection {
-    height: 80vh;
+    height: 90vh;
     width: 100%;
     background: url("../resources/hero.jpg") no-repeat center;
     background-position: cover;
@@ -32,7 +32,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     z-index: 1;
     position: relative;
     color: #FB5A57;
