@@ -236,7 +236,7 @@ app.post("/admin/signup", async (req, res) => {
     };
 });
 
-app.get("/admin/dashboard", isAdmin, wrapAsync(async (req, res) => {
+app.get("/admin/dashboard",isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
     let totalListings = await Listing.countDocuments();
     let totalBookedListings = await Listing.countDocuments({ booked: true });
     let totalUsers = await User.countDocuments({ role: 'user' });
