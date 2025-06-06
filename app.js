@@ -66,8 +66,9 @@ const User = require("./models/users.js");
 const Review = require("./models/reviews.js");
 const { Report } = require("./models/report.js");
 const Payment = require("./models/payment.js");
-const {Subscription} = require("./models/subscription.js");
+const { Subscription } = require("./models/subscription.js");
 const e = require("connect-flash");
+const { subscribe } = require("diagnostics_channel");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -259,7 +260,8 @@ app.get("/admin/dashboard", isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
     let totalUsers = await User.countDocuments({ role: 'user' });
     let totalReviews = await Review.countDocuments();
     let totalReports = await Report.countDocuments({ reportStatus: "pending" });
-    res.render("admin/admin.ejs", { totalListings, totalUsers, totalReviews, totalBookedListings, totalReports });
+    let totalSubscribers = await Subscription.countDocuments({ isActive: true });
+    res.render("admin/admin.ejs", { totalListings, totalUsers, totalReviews, totalBookedListings, totalReports, totalSubscribers });
 }));
 
 //REPORTS ROUTES
@@ -286,7 +288,7 @@ app.get("/admin/reports", isAdmin, wrapAsync(async (req, res) => {
 }));
 
 //Resolving Report
-app.post("/admin/report/:id",isAdmin, async (req, res) => {
+app.post("/admin/report/:id", isAdmin, async (req, res) => {
     let { id } = req.params;
     let report = await Report.findByIdAndUpdate(id, { reportStatus: "resolved" }, { runValidators: true, new: true });
     console.log(`Reolved : ${report}`);
@@ -317,6 +319,11 @@ app.get("/searchTitles", async (req, res) => {
 });
 
 //Subscription Routes
+app.get("/admin/subscribers", isLoggedIn, isAdmin, async (req, res) => {
+    let subscribers = await Subscription.find({ isActive: true });
+    res.render("subscribers/subscribers", { subscribers });
+})
+
 app.post("/subscribe", wrapAsync(async (req, res) => {
     let { username, email } = req.body;
     console.log(`Username : ${username} , Email : ${email}`);
@@ -334,6 +341,15 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
     req.flash("success", "Subscribed Successfully!");
     res.redirect("/listings");
 }));
+
+app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
+    let { id } = req.params;
+    let subscription = await Subscription.findByIdAndUpdate(id, { isActive: false }, { runValidators: true, new: true });
+    // let delSubscription = await Subscription.findByIdAndDelete(id);
+    console.log(`Unsubscribed : ${subscription}`);
+    req.flash("success", "Unsubscribed Successfully!");
+    res.redirect("/admin/subscribers");
+});
 
 //MiddleWares
 app.all('*', (req, res, next) => {//to handle req sent on nonexisting routes //Don not write 'err' as arguments.

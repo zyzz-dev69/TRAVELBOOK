@@ -1,0 +1,32 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+
+        <main>
+
+            <div style="min-height: 100vh;">
+                <div class="mb-5">
+                    <% if(subscribers.length==0){ %>
+                        <div class="heroText">
+                            <h2>No Subscribers yet!</h2>
+                        </div>
+                        <% } %>
+                </div>
+                <%for(sub of subscribers){%>
+                    <div class="reportCard card col-8 offset-2 mt-3 p-4">
+                        <div class="subsDiv">
+                            <i onclick="copyToClipBoard()" class="fa-regular fa-copy copyBtn"
+                            style="color: #00bfff; font-size: larger;"></i>
+                            <input id="clickToCopy" value="<%=sub.email%>" readonly></input>
+                        </div>
+                        <p><b>Subscribed At :</b>
+                            <%=sub.startDate.toString().split(" ").slice(0,4).join(" ")%>
+                        </p>
+                        <form action=" /unSubscribe/<%=sub._id%>?_method=DELETE" method="post" class="divBtnsRed">
+                                <button>UnSubscribe</button>
+                                </form>
+                    </div>
+                    <% }%>
+
+        </main>
+    </body>

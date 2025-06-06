@@ -1,11 +1,12 @@
 <% layout('/layouts/boilerplate') %>
     <div style="min-height: 100vh;">
-         <div class="mb-5">
+        <div class="mb-5">
             <% if(allReports.length==0){ %>
-                <h3>
-                    No Reports yet!
-                </h3>
-              <% } %>
+                <div class="heroText">
+                    <h2>No reports yet!</h2>
+                    <p><i>Keep up the good work!</i></p>
+                </div>
+                <% } %>
         </div>
         <%for(report of allReports){%>
             <div class="reportCard card col-8 offset-2 mt-3 p-2">
@@ -18,8 +19,8 @@
                 <p> <b>Reported At :</b>
                     <%=report.reportedAt.toString().split(" ").slice(0,4).join(" ")%>
                 </p>
-                <form action="/admin/report/<%=report._id%>" method="post" class="divBtns ">
-                        <button >Resolve!</button></form>
+                <form action=" /admin/report/<%=report._id%>" method="post" class="divBtns ">
+                        <button>Resolve!</button></form>
             </div>
             <% }%>
 
