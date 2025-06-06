@@ -84,7 +84,7 @@ main {
 
 .nav a img {
     opacity: 0.9;
-    transform: scale(2.25, 1.8);
+    transform: scale(2.5, 2);
     /* background-size: contain;
     max-width: 100% !important; */
     /* background-color: #f1f1f1; */
@@ -124,7 +124,7 @@ main {
 
 .navBtns i {
     color: #FB5A57;
-    font-size: x-large;
+    font-size: larger;
     width: 2rem !important;
 }
 
@@ -684,13 +684,12 @@ body{
         display: initial;
 
     }
-
-    .nav a img {
-        opacity: 1;
-        transform: scale(1.5, 1.25);
-        margin-bottom: 1rem;
+    .nav a img{
+        transform: scale(1.25,1.2);
     }
-
+    .navBtns{
+        opacity: 1;
+    }
 
     .formContainer {
         padding: 1rem !important;
@@ -744,12 +743,6 @@ body{
 }
 
 @media only screen and (max-width: 388px) {
-    .nav a img {
-        opacity: 1;
-        transform: scale(1.25, 1.2);
-        margin-bottom: 0.5rem;
-    }
-
     .fullWidth {
         width: 15rem !important;
     }
