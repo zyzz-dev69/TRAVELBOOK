@@ -319,8 +319,9 @@ app.get("/searchTitles", async (req, res) => {
 //Subscription Routes
 app.post("/subscribe", wrapAsync(async (req, res) => {
     let { username, email } = req.body;
+    console.log(`Username : ${username} , Email : ${email}`);
     let subscription = await Subscription.find({ email: email });
-    if (subscription) {
+    if (subscription.length == 1) {
         req.flash("error", "You are already subscribed!");
         return res.redirect("/listings");
     };
@@ -329,6 +330,7 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
         email: email
     });
     await newSubscription.save();
+    console.log(`New Subscription : ${newSubscription}`);
     req.flash("success", "Subscribed Successfully!");
     res.redirect("/listings");
 }));
