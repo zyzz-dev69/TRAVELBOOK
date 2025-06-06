@@ -8,10 +8,12 @@ body {
     background-color: #161515 !important;
     color: #f1f1f1 !important;
 }
-.alert{
+
+.alert {
     z-index: 1 !important;
 }
-main{
+
+main {
     min-height: 90vh;
 }
 
@@ -62,6 +64,7 @@ main{
     transition-duration: 0.4s;
     /* background-color: #2c2c2c; */
 }
+
 .nav::after {
     content: "";
     position: absolute;
@@ -81,11 +84,14 @@ main{
 
 .nav a img {
     opacity: 0.9;
+    transform: scale(2.5, 2);
+    /* background-size: contain;
+    max-width: 100% !important; */
     /* background-color: #f1f1f1; */
     /* color: #FB5A57; */
     /* font-size: 30rem; */
     width: 5rem;
-    height:4rem;
+    height: 4rem;
     border-radius: 1.5rem;
 
     /* font-size: 3rem; */
@@ -442,8 +448,8 @@ width: 8rem;
     border-radius: 0.5rem !important;
     color: #f1f1f1 !important;
     box-shadow: 0px 0px 8px rgb(255, 255, 255);
-    min-width:10rem ;
-    max-width:30rem ;
+    min-width: 10rem;
+    max-width: 30rem;
 }
 
 .reviewsContainer {
@@ -454,9 +460,10 @@ width: 8rem;
 .writeReview {
     width: 30rem !important;
 }
-.reviewDate{
+
+.reviewDate {
     opacity: 0.5;
-    position:absolute;
+    position: absolute;
     right: 0;
     /* position: relative;
     left: 2.3rem;
@@ -659,13 +666,13 @@ body{
     .searchResult {
         margin-left: 0.3rem !important;
     }
-    
-.nav a img {
-    opacity:1;
-    width: 4rem;
-    height:3rem;
-    border-radius: 1rem;
-}
+
+    .nav a img {
+        opacity: 1;
+        width: 4rem;
+        height: 3rem;
+        border-radius: 1rem;
+    }
 }
 
 @media only screen and (max-width:615px) {
@@ -702,10 +709,11 @@ body{
     .writeReview {
         width: 23.5rem !important;
     }
+
     .reviewDiv {
-  
-    max-width:15rem ;
-}
+
+        max-width: 15rem;
+    }
 
     .searchResult {
         margin-left: 2rem;
@@ -967,18 +975,19 @@ body{
     animation-range: entry 0% cover 30%;
 }
 
-.privacyAndTerms{
+.privacyAndTerms {
     margin: 1rem;
     padding: 1rem;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
-.subsDiv{
+.subsDiv {
     margin-left: 1.5rem;
     padding: 1rem;
     width: 18rem;
@@ -987,17 +996,19 @@ input::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
 }
-#clickToCopy{
+
+#clickToCopy {
     border: none;
     background: transparent;
     color: #f1f1f1;
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
 }
-#clickToCopy:focus{
+
+#clickToCopy:focus {
     outline: none;
 }
 
-.copyBtn{
+.copyBtn {
     cursor: pointer;
 
 }
