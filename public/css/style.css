@@ -84,7 +84,7 @@ main{
     /* background-color: #f1f1f1; */
     /* color: #FB5A57; */
     /* font-size: 30rem; */
-    width: 6rem;
+    width: 5rem;
     height:4rem;
     border-radius: 1.5rem;
 
@@ -659,6 +659,13 @@ body{
     .searchResult {
         margin-left: 0.3rem !important;
     }
+    
+.nav a img {
+    opacity:1;
+    width: 4rem;
+    height:3rem;
+    border-radius: 1rem;
+}
 }
 
 @media only screen and (max-width:615px) {
@@ -972,7 +979,13 @@ input::-webkit-inner-spin-button {
 
 
 .subsDiv{
-
+    margin-left: 1.5rem;
+    padding: 1rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 #clickToCopy{
     border: none;

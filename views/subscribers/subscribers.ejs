@@ -12,21 +12,24 @@
                         </div>
                         <% } %>
                 </div>
-                <%for(sub of subscribers){%>
-                    <div class="reportCard card col-8 offset-2 mt-3 p-4">
-                        <div class="subsDiv">
-                            <i onclick="copyToClipBoard()" class="fa-regular fa-copy copyBtn"
-                            style="color: #00bfff; font-size: larger;"></i>
-                            <input id="clickToCopy" value="<%=sub.email%>" readonly></input>
+                <section class="d-flex flex-wrap">
+
+                    <%for(sub of subscribers){%>
+                        <div class="reportCard card subsDiv">
+                            <div>
+                                <i onclick="copyToClipBoard()" class="fa-regular fa-copy copyBtn"
+                                    style="color: #00bfff; font-size: larger;"></i>
+                                <input id="clickToCopy" value="<%=sub.email%>" readonly></input>
+                            </div>
+                            <p><b>Subscribed At :</b>
+                                <%=sub.startDate.toString().split(" ").slice(0,4).join(" ")%>
+                            </p>
+                            <form action=" /unSubscribe/<%=sub._id%>?_method=DELETE" method="post" class="divBtnsRed">
+                                    <button>UnSubscribe</button>
+                                    </form>
                         </div>
-                        <p><b>Subscribed At :</b>
-                            <%=sub.startDate.toString().split(" ").slice(0,4).join(" ")%>
-                        </p>
-                        <form action=" /unSubscribe/<%=sub._id%>?_method=DELETE" method="post" class="divBtnsRed">
-                                <button>UnSubscribe</button>
-                                </form>
-                    </div>
-                    <% }%>
+                        <% }%>
+                </section>
 
         </main>
     </body>
