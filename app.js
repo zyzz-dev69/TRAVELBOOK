@@ -66,6 +66,8 @@ const User = require("./models/users.js");
 const Review = require("./models/reviews.js");
 const { Report } = require("./models/report.js");
 const Payment = require("./models/payment.js");
+const {Subscription} = require("./models/subscription.js");
+const e = require("connect-flash");
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -199,7 +201,7 @@ app.post("/login",
 app.get("/logout", userController.logoutUSer);
 
 //USER LISTINGS
-app.get("/listings/:id/myListings", async (req, res) => {
+app.get("/listings/:id/myListings", isLoggedIn, async (req, res) => {
     let { id } = req.params;
     let allListings = await Listing.find({ owner: id })
     console.log(allListings)
@@ -207,8 +209,8 @@ app.get("/listings/:id/myListings", async (req, res) => {
 });
 
 //USER BOOKINGS
-app.get("/listings/:id/myBookings", async (req, res) => {
-   //code to find booked lists....
+app.get("/listings/:id/myBookings", isLoggedIn, async (req, res) => {
+    //code to find booked lists....
     res.render("listings/myBookings");
 })
 
@@ -284,7 +286,7 @@ app.get("/admin/reports", isAdmin, wrapAsync(async (req, res) => {
 }));
 
 //Resolving Report
-app.post("/admin/report/:id", async (req, res) => {
+app.post("/admin/report/:id",isAdmin, async (req, res) => {
     let { id } = req.params;
     let report = await Report.findByIdAndUpdate(id, { reportStatus: "resolved" }, { runValidators: true, new: true });
     console.log(`Reolved : ${report}`);
@@ -312,7 +314,24 @@ app.get("/searchTitles", async (req, res) => {
         console.log(error)
     }
 
-})
+});
+
+//Subscription Routes
+app.post("/subscribe", wrapAsync(async (req, res) => {
+    let { username, email } = req.body;
+    let subscription = await Subscription.find({ email: email });
+    if (subscription) {
+        req.flash("error", "You are already subscribed!");
+        return res.redirect("/listings");
+    };
+    let newSubscription = new Subscription({
+        username: username,
+        email: email
+    });
+    await newSubscription.save();
+    req.flash("success", "Subscribed Successfully!");
+    res.redirect("/listings");
+}));
 
 //MiddleWares
 app.all('*', (req, res, next) => {//to handle req sent on nonexisting routes //Don not write 'err' as arguments.
