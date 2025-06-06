@@ -8,6 +8,9 @@ body {
     background-color: #161515 !important;
     color: #f1f1f1 !important;
 }
+.alert{
+    z-index: 1 !important;
+}
 main{
     min-height: 90vh;
 }
