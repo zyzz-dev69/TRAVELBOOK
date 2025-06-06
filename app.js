@@ -327,7 +327,7 @@ app.get("/admin/subscribers", isLoggedIn, isAdmin, async (req, res) => {
 app.post("/subscribe", wrapAsync(async (req, res) => {
     let { username, email } = req.body;
     console.log(`Username : ${username} , Email : ${email}`);
-    let subscription = await Subscription.find({ email: email });
+    let subscription = await Subscription.find({ email: email, isActive: true });
     if (subscription.length == 1) {
         req.flash("error", "You are already subscribed!");
         return res.redirect("/listings");
@@ -344,9 +344,9 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
 
 app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
     let { id } = req.params;
-    let subscription = await Subscription.findByIdAndUpdate(id, { isActive: false }, { runValidators: true, new: true });
-    // let delSubscription = await Subscription.findByIdAndDelete(id);
-    console.log(`Unsubscribed : ${subscription}`);
+    // let subscription = await Subscription.findByIdAndUpdate(id, { isActive: false }, { runValidators: true, new: true });
+    let delSubscription = await Subscription.findByIdAndDelete(id);
+    console.log(`Unsubscribed : ${delSubscription}`);
     req.flash("success", "Unsubscribed Successfully!");
     res.redirect("/admin/subscribers");
 });
