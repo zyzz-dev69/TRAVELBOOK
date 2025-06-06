@@ -124,7 +124,7 @@ main {
 
 .navBtns i {
     color: #FB5A57;
-    font-size: larger;
+    font-size: x-large;
     width: 2rem !important;
 }
 
@@ -685,6 +685,13 @@ body{
 
     }
 
+    .nav a img {
+        opacity: 1;
+        transform: scale(1.5, 1.25);
+        margin-bottom: 1rem;
+    }
+
+
     .formContainer {
         padding: 1rem !important;
         display: flex;
@@ -737,6 +744,12 @@ body{
 }
 
 @media only screen and (max-width: 388px) {
+    .nav a img {
+        opacity: 1;
+        transform: scale(1.25, 1.2);
+        margin-bottom: 0.5rem;
+    }
+
     .fullWidth {
         width: 15rem !important;
     }
