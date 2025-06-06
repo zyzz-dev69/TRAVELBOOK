@@ -198,6 +198,21 @@ app.post("/login",
 //USER LOGOUT
 app.get("/logout", userController.logoutUSer);
 
+//USER LISTINGS
+app.get("/listings/:id/myListings", async (req, res) => {
+    let { id } = req.params;
+    let allListings = await Listing.find({ owner: id })
+    console.log(allListings)
+    res.render("listings/myListings", { allListings });
+});
+
+//USER BOOKINGS
+app.get("/listings/:id/myBookings", async (req, res) => {
+   //code to find booked lists....
+    res.render("listings/myBookings");
+})
+
+
 //ADMIN ROUTES
 app.get("/admin/signup", wrapAsync((req, res) => {
     res.render("admin/signup.ejs");
@@ -236,7 +251,7 @@ app.post("/admin/signup", async (req, res) => {
     };
 });
 
-app.get("/admin/dashboard",isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
+app.get("/admin/dashboard", isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
     let totalListings = await Listing.countDocuments();
     let totalBookedListings = await Listing.countDocuments({ booked: true });
     let totalUsers = await User.countDocuments({ role: 'user' });

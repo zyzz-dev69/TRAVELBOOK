@@ -1,7 +1,8 @@
 <% layout('/layouts/boilerplate') %>
 
     <body>
-        <h3 class="m-4"><a href="/listings"><i class="fa-solid fa-circle-arrow-left fa-lg mr-2" style="color: #009acd;"></i></a><b>APARTMENTS</b> : </h3>
+        <main>
+            <h3 class="m-4"><a href="/listings"><i class="fa-solid fa-circle-arrow-left fa-lg mr-2" style="color: #009acd;"></i></a><b>APARTMENTS</b> : </h3>
 
         <div class="containerx">
             <% if(allListings.length==0){%>
@@ -42,4 +43,5 @@
                         <%}%>
 
         </div>
+        </main>
     </body>

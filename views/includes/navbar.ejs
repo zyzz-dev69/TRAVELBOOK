@@ -34,12 +34,15 @@
             <div class="menu hiddenBySearch">
 
                 <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                    aria-controls="offcanvasRight"><div class="navBtns"><i class="fa-solid fa-bars "></i></div></button>
+                    aria-controls="offcanvasRight">
+                    <div class="navBtns"><i class="fa-solid fa-bars "></i></div>
+                </button>
 
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                     aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header border">
-                        <h4 class="offcanvas-title" id="offcanvasRightLabel"><a href="/listings"><b>TRAVEL BOOK</b> </a></h4>
+                        <h4 class="offcanvas-title" id="offcanvasRightLabel"><a href="/listings"><b>TRAVEL BOOK</b> </a>
+                        </h4>
                         <button type="button" class="btn-close btn-close-white border" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
                     </div>
@@ -60,19 +63,21 @@
                             <% } %>
                                 <div class="navopt">
                                     <a href="/listings/new"><i class="fa-solid fa-plus"></i>
-                                        &nbsp; New Listing
+                                        &nbsp; List your property
                                     </a>
                                 </div>
+                                <% if (currUser) { %>
                                 <div class="navopt">
-                                    <a href="#"><i class="fa-solid fa-building-user"></i>
+                                    <a href="/listings/<%= currUser._id%>/myListings"><i class="fa-solid fa-building-user"></i>
                                         &nbsp;My Listings
                                     </a>
                                 </div>
                                 <div class="navopt">
-                                    <a href="#"><i class="fa-solid fa-building-circle-check"></i>
+                                    <a href="/listings/<%= currUser._id%>/myBookings"><i class="fa-solid fa-building-circle-check"></i>
                                         &nbsp; My Bookings
                                     </a>
                                 </div>
+                                <% } %>
                                 <div class="navopt">
                                     <a href="#socials"><i class="fa-solid fa-envelopes-bulk"></i></i>
                                         &nbsp; Contact Us

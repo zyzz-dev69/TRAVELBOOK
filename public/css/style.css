@@ -8,6 +8,9 @@ body {
     background-color: #161515 !important;
     color: #f1f1f1 !important;
 }
+main{
+    min-height: 90vh;
+}
 
 .heroSection {
     height: 90vh;

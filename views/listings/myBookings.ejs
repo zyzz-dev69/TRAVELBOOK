@@ -1,0 +1,16 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+        <main>
+            <h3 class="m-4"><a href="/listings"><i class="fa-solid fa-circle-arrow-left fa-lg mr-2"
+                        style="color: #009acd;"></i></a><b>Your Listings</b></h3>
+            <%# if(allListings.length==0){%>
+                <div class="heroText">
+                    <h2 class="font-size-5">You haven't Booked any listing yet!</h2>
+                    <p style="color: #f1f1f1;"><i>Explore a wide range of properties for your next vacation or business trip.</i> </p>
+                    <a href="/listings/#explore" class="divBtns"><button>Explore Now</button></a>
+                </div>
+                <%# }%>
+                
+        </main>
+    </body>
