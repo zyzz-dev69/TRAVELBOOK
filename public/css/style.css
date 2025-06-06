@@ -458,7 +458,7 @@ width: 8rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     width: 100%;
-    height: 6rem;
+    height: 6.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -473,11 +473,13 @@ width: 8rem;
 
 
 .ftIcons a {
-    margin: 0.25rem;
+    margin: 1rem 0.25rem;
     font-size: 1.72rem;
     color: #00bfff;
     opacity: 0.8;
     transition-duration: 0.3s;
+    position: relative;
+    top: 8px;
 }
 
 .ftIcons a i:hover {
