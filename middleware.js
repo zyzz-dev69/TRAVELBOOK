@@ -68,6 +68,8 @@ module.exports.isAdmin = (req, res, next) => {
 
 //NSFW CHECKING
 module.exports.checkNSFW = (req, res, next) => {
+if(req.file){
+
     let IMG_URL = req.file.path;
     // Tesing if an image is SFW or NSFW for my TRAVELBOOK FYP!
     const PAT = '08139d5caed0426c956673fa7c08a75a';//Personal Access Token
@@ -102,16 +104,16 @@ module.exports.checkNSFW = (req, res, next) => {
             if (err) {
                 throw new Error(err);
             }
-
+            
             if (response.status.code !== 10000) {
                 throw new Error("Post model outputs failed, status: " + response.status.description);
             }
-
+            
             // Since we have one input, one output will exist here
             const output = response.outputs[0];
-
+            
             let sfwScore = null, nsfwScore = null;
-
+            
             console.log("Predicted concepts:");
             for (const concept of output.data.concepts) {
                 if (concept.name == "sfw") sfwScore = concept.value;
@@ -125,10 +127,12 @@ module.exports.checkNSFW = (req, res, next) => {
                 req.flash("error", "NSFW CONTENT DETECTED. TRY AGAIN!.");
                 const public_id = req.file.filename;
                 cloudinary.uploader.destroy(public_id).then((res) => console.log(res)).catch((err) => console.log(err));
-                res.redirect("listings/new");
+                // console.log(req.headers.referer)
+                res.redirect(req.headers.referer);
             }
         }
-
+        
     );
+}else return next();
 
-}
+};

@@ -136,7 +136,7 @@ app.post("/listings", isLoggedIn, upload.single('image'),checkNSFW, wrapAsync(li
 
 //Edit Routes
 app.get("/listings/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editFormRender));
-app.put("/listings/:id", isLoggedIn, isOwner, upload.single('image'), wrapAsync(listingController.updateListing));
+app.put("/listings/:id", isLoggedIn, isOwner, upload.single('image'), checkNSFW, wrapAsync(listingController.updateListing));
 
 //Delete Route
 app.delete("/listings/:id", isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
