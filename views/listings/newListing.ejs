@@ -17,22 +17,25 @@
                     <div class="valid-feedback">This is will work!</div>
                     <div class="invalid-feedback">Please enter a description.</div>
                 </div><br>
-                <label for="price" class="form-label"> Price :</label>
+                <label for="price" class="form-label" id="star"> Price :</label>
                 <input type="number" name="price" id="price" placeholder="Min 100..."><br><br>
                 <div>
-                    <label for="image" class="form-label">Upload image :</label>
+                    <label for="img" class="form-label">Upload image :</label>
+                    <div id="fileList">
+                    </div>
                     <input type="file" name="image" id="img" accept=".jpg , .png , .jpeg" required>
                     <div class="invalid-feedback">Please upload an image for your listing.</div>
                 </div><br>
                 <div>
                     <label for="type">Property Type :</label><br>
                     <select name="propertyType" for="type" id="type">:
-                    <option id="type" value="room">Room</option>
-                    <option id="type" value="apartment">Apartment</option>
-                    <option id="type" value="villa">Villa</option>
-                    <option id="type" value="banglow">Banglow</option>
-                    <option id="type" value="farmhouse">Farmhouse</option>
-                    <option id="type" value="penthouse">Penthouse</option></select>
+                        <option id="type" value="room">Room</option>
+                        <option id="type" value="apartment">Apartment</option>
+                        <option id="type" value="villa">Villa</option>
+                        <option id="type" value="banglow">Banglow</option>
+                        <option id="type" value="farmhouse">Farmhouse</option>
+                        <option id="type" value="penthouse">Penthouse</option>
+                    </select>
                 </div><br>
                 <div><label for="location" class="form-label"> Location :</label>
                     <input class="form-control" type="text" name="location" id="location"

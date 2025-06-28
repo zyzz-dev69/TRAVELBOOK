@@ -10,7 +10,7 @@ const path = require('path');
 const { linkSync, stat, rmSync } = require('fs');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const { isLoggedIn, saveRedirectURL, isOwner, verifyCreator, isAdmin } = require("./middleware.js");
+const { isLoggedIn, saveRedirectURL, isOwner, verifyCreator, isAdmin, checkNSFW } = require("./middleware.js");
 
 const listingController = require("./controllers/listing.js");
 const reviewController = require("./controllers/review.js");
@@ -78,6 +78,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+
+//CONNECTION WITH DATABASE (MONGOATLAS)
 mongoose.connect(ATLAS_URL)
     .then((() => console.log("connection established with Database")))
     .catch((err) => console.log(err));
@@ -130,7 +132,7 @@ app.get("/", async (req, res) => {
 
 // New Listing Route **Use JOI for server side schema validation**
 app.get("/listings/new", isLoggedIn, (listingController.newListingForm));
-app.post("/listings", isLoggedIn, upload.single('image'), wrapAsync(listingController.createListing));
+app.post("/listings", isLoggedIn, upload.single('image'),checkNSFW, wrapAsync(listingController.createListing));
 
 //Edit Routes
 app.get("/listings/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editFormRender));
@@ -282,13 +284,13 @@ app.post("/listings/:id/report", isLoggedIn, wrapAsync(async (req, res, next) =>
     res.redirect(`/listings/${id}`);
 }));
 
-app.get("/admin/reports", isAdmin, wrapAsync(async (req, res) => {
+app.get("/admin/reports",isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
     let allReports = await Report.find({ reportStatus: "pending" });
     res.render("report/reports", { allReports });
 }));
 
 //Resolving Report
-app.post("/admin/report/:id", isAdmin, async (req, res) => {
+app.post("/admin/report/:id",isLoggedIn, isAdmin, async (req, res) => {
     let { id } = req.params;
     let report = await Report.findByIdAndUpdate(id, { reportStatus: "resolved" }, { runValidators: true, new: true });
     console.log(`Reolved : ${report}`);
@@ -350,6 +352,17 @@ app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
     req.flash("success", "Unsubscribed Successfully!");
     res.redirect("/admin/subscribers");
 });
+
+
+//NSFW CHECKER
+app.post("/check", (req,res)=>{
+    console.log("*********************")
+    console.log(req.file)
+    console.log("*********************")
+    res.json({"success":"YES"})
+})
+
+
 
 //MiddleWares
 app.all('*', (req, res, next) => {//to handle req sent on nonexisting routes //Don not write 'err' as arguments.
