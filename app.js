@@ -342,13 +342,14 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
     });
     await newSubscription.save()
         .then(() => {
+            req.flash("success", "Subscribed Successfully!");
             console.log("New Subscription Created!");
             // Send a welcome email to the new subscriber
             const transporter = nodemailer.createTransport({
                 service: 'gmail', // e.g., 'gmail', 'yahoo', 'hotmail'
                 auth: {
-                    user: process.env.MY_GMAIL, // replace with your email
-                    pass: process.env.APP_PASS   // replace with your email password or app password
+                    user: 'rebelx47jod69@gmail.com', // replace with your email
+                    pass: 'kfoj hysh kimw qecs'   // replace with your email password or app password
                 }
             })
             const mailOptions = {
@@ -360,6 +361,7 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
                  <img src="https://res.cloudinary.com/dfdudnocp/image/upload/v1751133184/My%20Brand/1_yykbrz.png" alt="TravelBook Logo" style="width: 200px; height: 150px; margin-bottom: -50px">
             </div>
             <h1 style="color: #FB5A57; margin-bottom: 8px; text-align:center; font-size:2.2em;">WELCOME TO TRAVELBOOK!</h1>
+            <hr style="border: none; border-top: 2px solid #FB5A57; margin: 32px 0;">
             <p style="font-size: 1.1em; margin-top:24px;">
                 Hi ${username},<br>
                 We're absolutely delighted to welcome you to our vibrant travel community! 🌍
@@ -392,11 +394,9 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     console.error("Error sending email:", error);
-                    req.flash("error", `Failed ${error}`);
                     return res.redirect("/listings")
                 } else {
                     console.log("Email sent successfully:", info.response);
-                    req.flash("success", "Subscribed Successfully!");
                     return res.redirect("/listings")
                 }
             });
