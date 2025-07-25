@@ -353,7 +353,7 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
                         }
                     })
                     const mailOptions = {
-                        from: "travelbookteam",
+                        from: "travelbookofficialteam",
                         to: email,
                         subject: 'Welcome to TRAVELBOOK Newsletter!',
                         html: `<div style="font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; padding: 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(251,90,87,0.10); max-width: 600px; margin: auto;">
