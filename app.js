@@ -1,6 +1,5 @@
-if (process.env.NODE_ENV != 'production') {
-    require("dotenv").config();
-};
+require("dotenv").config();
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -331,11 +330,17 @@ app.get("/admin/subscribers", isLoggedIn, isAdmin, async (req, res) => {
 app.post("/subscribe", wrapAsync(async (req, res) => {
     let { username, email } = req.body;
     console.log(`Username : ${username} , Email : ${email}`);
-    let subscription = await Subscription.find({ email: email, isActive: true });
-    if (subscription.length == 1) {
-        req.flash("error", "You are already subscribed!");
+    await Subscription.find({ email: email, isActive: true })
+    .then((sub) => {
+        if (sub.length >= 1) {
+            req.flash("error", "You are already subscribed!");
+            return res.redirect("/listings");
+        };
+    }).catch((err) => {
+        console.log("Error in checking subscription : ", err);
+        req.flash("error", "Some error in Database, Try again later!");
         return res.redirect("/listings");
-    };
+    });
     let newSubscription = new Subscription({
         username: username,
         email: email
@@ -348,8 +353,8 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail', // e.g., 'gmail', 'yahoo', 'hotmail'
                 auth: {
-                    user: 'rebelx47jod69@gmail.com', // replace with your email
-                    pass: 'kfoj hysh kimw qecs'   // replace with your email password or app password
+                    user: process.env.MY_GMAIL, // replace with your email
+                    pass: process.env.APP_PASS   // replace with your email password or app password
                 }
             })
             const mailOptions = {
@@ -363,8 +368,8 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
             <h1 style="color: #FB5A57; margin-bottom: 8px; text-align:center; font-size:2.2em;">WELCOME TO TRAVELBOOK!</h1>
             <hr style="border: none; border-top: 2px solid #FB5A57; margin: 32px 0;">
             <p style="font-size: 1.1em; margin-top:24px;">
-                Hi ${username},<br>
-                We're absolutely delighted to welcome you to our vibrant travel community! 🌍
+            Hi ${username},<br>
+            We're absolutely delighted to welcome you to our vibrant travel community! 🌍
             </p>
             <p>
                 As a member, you'll enjoy <span style="color: #FB5A57; font-weight: bold;">exclusive travel tips</span>, <span style="color: #FB5A57; font-weight: bold;">personalized recommendations</span>, and <span style="color: #FB5A57; font-weight: bold;">special discounts</span> delivered straight to your inbox.
