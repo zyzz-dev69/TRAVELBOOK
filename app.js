@@ -4,6 +4,7 @@ if (process.env.NODE_ENV != 'production') {
 const express = require('express');
 const app = express();
 const port = 3000;
+const nodemailer = require('nodemailer');
 const ATLAS_URL = process.env.MONGO_ATLAS_URL;
 const mongoose = require('mongoose');
 const path = require('path');
@@ -132,7 +133,7 @@ app.get("/", async (req, res) => {
 
 // New Listing Route **Use JOI for server side schema validation**
 app.get("/listings/new", isLoggedIn, (listingController.newListingForm));
-app.post("/listings", isLoggedIn, upload.single('image'),checkNSFW, wrapAsync(listingController.createListing));
+app.post("/listings", isLoggedIn, upload.single('image'), checkNSFW, wrapAsync(listingController.createListing));
 
 //Edit Routes
 app.get("/listings/:id/edit", isLoggedIn, isOwner, wrapAsync(listingController.editFormRender));
@@ -284,13 +285,14 @@ app.post("/listings/:id/report", isLoggedIn, wrapAsync(async (req, res, next) =>
     res.redirect(`/listings/${id}`);
 }));
 
-app.get("/admin/reports",isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
+//REPORTS
+app.get("/admin/reports", isLoggedIn, isAdmin, wrapAsync(async (req, res) => {
     let allReports = await Report.find({ reportStatus: "pending" });
     res.render("report/reports", { allReports });
 }));
 
 //Resolving Report
-app.post("/admin/report/:id",isLoggedIn, isAdmin, async (req, res) => {
+app.post("/admin/report/:id", isLoggedIn, isAdmin, async (req, res) => {
     let { id } = req.params;
     let report = await Report.findByIdAndUpdate(id, { reportStatus: "resolved" }, { runValidators: true, new: true });
     console.log(`Reolved : ${report}`);
@@ -338,10 +340,71 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
         username: username,
         email: email
     });
-    await newSubscription.save();
-    console.log(`New Subscription : ${newSubscription}`);
-    req.flash("success", "Subscribed Successfully!");
-    res.redirect("/listings");
+    await newSubscription.save()
+        .then(() => {
+            console.log("New Subscription Created!");
+            // Send a welcome email to the new subscriber
+            const transporter = nodemailer.createTransport({
+                service: 'gmail', // e.g., 'gmail', 'yahoo', 'hotmail'
+                auth: {
+                    user: process.env.MY_GMAIL, // replace with your email
+                    pass: process.env.APP_PASS   // replace with your email password or app password
+                }
+            })
+            const mailOptions = {
+                from: "travelbookteam",
+                to: email,
+                subject: 'Welcome to TRAVELBOOK Newsletter!',
+                html: `<div style="font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; padding: 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(251,90,87,0.10); max-width: 600px; margin: auto;">
+            <div style="text-align:center;">
+                 <img src="https://res.cloudinary.com/dfdudnocp/image/upload/v1751133184/My%20Brand/1_yykbrz.png" alt="TravelBook Logo" style="width: 200px; height: 150px; margin-bottom: -50px">
+            </div>
+            <h1 style="color: #FB5A57; margin-bottom: 8px; text-align:center; font-size:2.2em;">WELCOME TO TRAVELBOOK!</h1>
+            <p style="font-size: 1.1em; margin-top:24px;">
+                Hi ${username},<br>
+                We're absolutely delighted to welcome you to our vibrant travel community! 🌍
+            </p>
+            <p>
+                As a member, you'll enjoy <span style="color: #FB5A57; font-weight: bold;">exclusive travel tips</span>, <span style="color: #FB5A57; font-weight: bold;">personalized recommendations</span>, and <span style="color: #FB5A57; font-weight: bold;">special discounts</span> delivered straight to your inbox.
+            </p>
+            <p>
+                <span style="color: #FB5A57; font-weight: bold;">Ready to explore?</span> Discover breathtaking destinations, plan your next trip, and unlock member-only deals curated just for you!
+            </p>
+            <div style="text-align: center; margin: 32px 0;">
+                <a href="https://travelbook-dmr4.onrender.com/listings" 
+                   style="background: #FB5A57; color: #fff; padding: 16px 36px; text-decoration: none; border-radius: 8px; font-size: 1.15em; font-weight: bold; box-shadow: 0 2px 8px rgba(251,90,87,0.18); display: inline-block; letter-spacing:1px;">
+                   Explore TRAVELBOOK
+                </a>
+            </div>
+            <hr style="border: none; border-top: 2px solid #FB5A57; margin: 32px 0;">
+            <p style="font-size: 1em; color: #444;">
+                Have questions or need travel advice? <span style="color:#FB5A57;font-weight:bold;">Just reply to this email</span>—our team is here to help!
+            </p>
+            <p style="font-size: 1em; color: #444;">
+                Wishing you unforgettable journeys and new adventures,<br>
+                <span style="color: #FB5A57; font-weight: bold;">The TRAVELBOOK Team</span>
+            </p>
+            <div style="margin-top: 32px; text-align: center; color: #FB5A57; font-size: 1em;">
+                <em>Connect with us on <a href="https://instagram.com/jodzyrox" style="color:#FB5A57;text-decoration:underline;">Instagram</a> and <a href="https://discord.com/users/_web.dev_" style="color:#FB5A57;text-decoration:underline;">Discord</a> for daily inspiration & updates!</em>
+            </div>
+        </div>`
+            };
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error("Error sending email:", error);
+                    req.flash("error", `Failed ${error}`);
+                    return res.redirect("/listings")
+                } else {
+                    console.log("Email sent successfully:", info.response);
+                    req.flash("success", "Subscribed Successfully!");
+                    return res.redirect("/listings")
+                }
+            });
+        }).catch((err) => {
+            console.log("Error in creating new subscription : ", err);
+            req.flash("error", "Error in creating new subscription!");
+            return res.redirect("/listings");
+        });
 }));
 
 app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
@@ -355,11 +418,11 @@ app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
 
 
 //NSFW CHECKER
-app.post("/check", (req,res)=>{
+app.post("/check", (req, res) => {
     console.log("*********************")
     console.log(req.file)
     console.log("*********************")
-    res.json({"success":"YES"})
+    res.json({ "success": "YES" })
 })
 
 
