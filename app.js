@@ -331,37 +331,32 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
     let { username, email } = req.body;
     console.log(`Username : ${username} , Email : ${email}`);
     await Subscription.find({ email: email, isActive: true })
-    .then((sub) => {
-        if (sub.length >= 1) {
-            req.flash("error", "You are already subscribed!");
-            return res.redirect("/listings");
-        };
-    }).catch((err) => {
-        console.log("Error in checking subscription : ", err);
-        req.flash("error", "Some error in Database, Try again later!");
-        return res.redirect("/listings");
-    });
-    let newSubscription = new Subscription({
-        username: username,
-        email: email
-    });
-    await newSubscription.save()
-        .then(() => {
-            req.flash("success", "Subscribed Successfully!");
-            console.log("New Subscription Created!");
-            // Send a welcome email to the new subscriber
-            const transporter = nodemailer.createTransport({
-                service: 'gmail', // e.g., 'gmail', 'yahoo', 'hotmail'
-                auth: {
-                    user: process.env.MY_GMAIL, // replace with your email
-                    pass: process.env.APP_PASS   // replace with your email password or app password
-                }
-            })
-            const mailOptions = {
-                from: "travelbookteam",
-                to: email,
-                subject: 'Welcome to TRAVELBOOK Newsletter!',
-                html: `<div style="font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; padding: 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(251,90,87,0.10); max-width: 600px; margin: auto;">
+        .then(async(sub) => {
+            if (sub.length >= 1) {
+                req.flash("error", "You are already subscribed!");
+                return res.redirect("/listings");
+            };
+            let newSubscription = new Subscription({
+                username: username,
+                email: email
+            });
+            await newSubscription.save()
+                .then(() => {
+                    req.flash("success", "Subscribed Successfully!");
+                    console.log("New Subscription Created!");
+                    // Send a welcome email to the new subscriber
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail', // e.g., 'gmail', 'yahoo', 'hotmail'
+                        auth: {
+                            user: process.env.MY_GMAIL, // replace with your email
+                            pass: process.env.APP_PASS   // replace with your email password or app password
+                        }
+                    })
+                    const mailOptions = {
+                        from: "travelbookteam",
+                        to: email,
+                        subject: 'Welcome to TRAVELBOOK Newsletter!',
+                        html: `<div style="font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #333; padding: 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(251,90,87,0.10); max-width: 600px; margin: auto;">
             <div style="text-align:center;">
                  <img src="https://res.cloudinary.com/dfdudnocp/image/upload/v1751133184/My%20Brand/1_yykbrz.png" alt="TravelBook Logo" style="width: 200px; height: 150px; margin-bottom: -50px">
             </div>
@@ -395,21 +390,23 @@ app.post("/subscribe", wrapAsync(async (req, res) => {
                 <em>Connect with us on <a href="https://instagram.com/jodzyrox" style="color:#FB5A57;text-decoration:underline;">Instagram</a> and <a href="https://discord.com/users/_web.dev_" style="color:#FB5A57;text-decoration:underline;">Discord</a> for daily inspiration & updates!</em>
             </div>
         </div>`
-            };
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.error("Error sending email:", error);
-                    return res.redirect("/listings")
-                } else {
-                    console.log("Email sent successfully:", info.response);
-                    return res.redirect("/listings")
-                }
-            });
+                    };
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            console.error("Error sending email:", error);
+                            return res.redirect("/listings")
+                        } else {
+                            console.log("Email sent successfully:", info.response);
+                            return res.redirect("/listings")
+                        }
+                    });
+                })
         }).catch((err) => {
-            console.log("Error in creating new subscription : ", err);
-            req.flash("error", "Error in creating new subscription!");
+            console.log("Error in checking subscription : ", err);
+            req.flash("error", "Some error in Database, Try again later!");
             return res.redirect("/listings");
         });
+
 }));
 
 app.delete("/unSubscribe/:id", isLoggedIn, isAdmin, async (req, res) => {
