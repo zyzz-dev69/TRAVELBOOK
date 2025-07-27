@@ -1,6 +1,0 @@
--> Till File upload and its validation
--> Admin Dashboard
--> Other Admin functionalities
--> Somewhat responsive but still more to do
--> Handling Reports
--> Filtering based on property types

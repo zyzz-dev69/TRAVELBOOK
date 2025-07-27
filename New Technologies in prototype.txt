@@ -1,3 +1,0 @@
-1.Online database (Mongo Atlas).
-2.Mongo Online Session (connect-mongo).
-3.Online hosting (Render)
